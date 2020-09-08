@@ -47,6 +47,4 @@ Suggests:
     downloadthis (>= 0.2.0),
     spelling
 VignetteBuilder: knitr
-Remotes: 
-    wilkelab/ggtext
 Language: en-US
