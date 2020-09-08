@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Dataset and functions from the meta-analysis published in [...]. It contains all the data and functions to reproduce the analysis.
+Dataset and functions from the meta-analysis published in Medicine & Science in Sports & Exercise. It contains all the data and functions to reproduce the analysis.
 }
 \seealso{
 Useful links:
@@ -19,7 +19,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Felipe Mattioni Maturana \email{felipe.mattioni@med.uni-tuebigen.de} (\href{https://orcid.org/0000-0002-4221-6104}{ORCID})
+\strong{Maintainer}: Felipe Mattioni Maturana \email{felipe.mattioni@med.uni-tuebingen.de} (\href{https://orcid.org/0000-0002-4221-6104}{ORCID})
 
 }
 \keyword{internal}
