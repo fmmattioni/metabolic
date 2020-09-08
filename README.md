@@ -9,6 +9,8 @@
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/metabolic)](https://CRAN.R-project.org/package=metabolic)
+[![R build
+status](https://github.com/fmmattioni/metabolic/workflows/R-CMD-check/badge.svg)](https://github.com/fmmattioni/metabolic/actions)
 <!-- badges: end -->
 
 The goal of `metabolic` is to provide all the data and the tools
