@@ -47,7 +47,7 @@ navbar:
         href: news/index.html
   right:
   - icon: fa-github fa-lg
-    href: https://github.com/fmmattioni/downloadthis
+    href: https://github.com/fmmattioni/metabolic
   - icon: fa-twitter fa-lg
     href: https://twitter.com/felipe_mattioni
 
