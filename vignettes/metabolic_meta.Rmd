@@ -1,0 +1,71 @@
+---
+title: "Dataset: metabolic_meta"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dataset: metabolic_meta}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+```{r echo=FALSE}
+## prepare data dictionary
+library(metabolic)
+library(kableExtra)
+
+doc_metabolic_meta <- Rd2roxygen::parse_file(here::here("man/metabolic_meta.Rd"))
+
+data_descriptions <- doc_metabolic_meta$format %>% 
+  stringr::str_split(pattern = "\\\\") %>% 
+  unlist(recursive = FALSE) %>% 
+  dplyr::as_tibble() %>% 
+  tail(-2) %>% 
+  dplyr::mutate(value = stringr::str_remove(value, pattern = "item\\{(.*?)\\}"),
+         value = stringr::str_remove(value, pattern = "\\{|\\}"),
+         value = stringr::str_remove(value, pattern = "\\}\n")) %>% 
+  dplyr::rename(description = value)
+
+data_dictionary <- metabolic_meta %>% 
+  names() %>% 
+  tibble::enframe(name = NULL, value = "column") %>% 
+  dplyr::bind_cols(data_descriptions)
+```
+
+```{block, type = 'rmdinfo'}
+The `metabolic_meta` dataset displays the "processed" data from the data extracted from each study. Here, the calculation of the difference in means and of the standard deviation of the mean between pre- and post-training are already calculated. This dataset is used internally to reproduce the meta-analysis results.
+
+Please, refer to the [Introduction to metabolic vignette](metabolic.html) for a walk-through.
+```
+
+## Data download
+
+In case you are not familiar with `R` or just would like to download this dataset, you can choose to download it as a `.xlsx` file.
+
+```{r echo=FALSE}
+library(downloadthis)
+
+list("metabolic_meta" = metabolic::metabolic_meta, "data dictionary" = data_dictionary) %>% 
+  download_this(
+    .data = ., 
+    output_name = "metabolic_meta dataset from the {metabolic} package", 
+    output_extension = ".xlsx", 
+    button_label = "Download data as .xlsx", 
+    button_type = "warning"
+  )
+```
+
+## Data dictionary
+
+```{r echo=FALSE}
+data_dictionary %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```

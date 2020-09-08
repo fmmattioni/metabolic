@@ -1,0 +1,67 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# metabolic <img src='man/figures/logo.png' align="right" height="240" />
+
+<!-- badges: start -->
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![CRAN status](https://www.r-pkg.org/badges/version/metabolic)](https://CRAN.R-project.org/package=metabolic)
+<!-- badges: end -->
+
+The goal of `metabolic` is to provide all the data and the tools necessary to reproduce the meta-analysis published in [Medicine & Science in Sports & Exercise](https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx).
+
+## Installation
+
+You can install the development version of metabolic from from [GitHub](https://github.com/fmmattioni/metabolic) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("fmmattioni/metabolic")
+```
+
+## Datasets
+
+### Dataset to reproduce meta-analyses
+
+```{r}
+metabolic::metabolic_meta
+```
+
+### Dataset to build the GOfER diagram
+
+```{r}
+metabolic::metabolic_gofer
+```
+
+## Reproduce meta-analysis for each clinical endpoint
+
+```{r}
+library(metabolic)
+
+perform_meta(endpoint = "VO2max")
+```
+
+## Build a GOfER (Graphical Overview for Evidence Reviews) diagram
+
+```{r, fig.width=40, fig.height=20}
+build_gofer(page = "1")
+```
+
+## Citation
+
+```{r}
+citation("metabolic")
+```
+

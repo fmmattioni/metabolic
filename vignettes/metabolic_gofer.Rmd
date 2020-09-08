@@ -1,0 +1,71 @@
+---
+title: "Dataset: metabolic_gofer"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dataset: metabolic_gofer}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+```{r echo=FALSE}
+## prepare data dictionary
+library(metabolic)
+library(kableExtra)
+
+doc_metabolic_gofer <- Rd2roxygen::parse_file(here::here("man/metabolic_gofer.Rd"))
+
+data_descriptions <- doc_metabolic_gofer$format %>% 
+  stringr::str_split(pattern = "\\\\") %>% 
+  unlist(recursive = FALSE) %>% 
+  dplyr::as_tibble() %>% 
+  tail(-2) %>% 
+  dplyr::mutate(value = stringr::str_remove(value, pattern = "item\\{(.*?)\\}"),
+         value = stringr::str_remove(value, pattern = "\\{|\\}"),
+         value = stringr::str_remove(value, pattern = "\\}\n")) %>% 
+  dplyr::rename(description = value)
+
+data_dictionary <- metabolic_gofer %>% 
+  names() %>% 
+  tibble::enframe(name = NULL, value = "column") %>% 
+  dplyr::bind_cols(data_descriptions)
+```
+
+```{block, type = 'rmdinfo'}
+The `metabolic_gofer` dataset displays the data necessary for building a **GOfER** diagram (Graphical Overview for Evidence Reviews) from the studies included in the meta-analysis.
+
+Please, refer to the [Building a GOfER with 'ggplot2' and 'patchwork' vignette](gofer.html) for a walk-through.
+```
+
+## Data download
+
+In case you are not familiar with `R` or just would like to download this dataset, you can choose to download it as a `.xlsx` file.
+
+```{r echo=FALSE}
+library(downloadthis)
+
+list("metabolic_gofer" = metabolic::metabolic_gofer, "data dictionary" = data_dictionary) %>% 
+  download_this(
+    .data = ., 
+    output_name = "metabolic_gofer dataset from the {metabolic} package", 
+    output_extension = ".xlsx", 
+    button_label = "Download data as .xlsx", 
+    button_type = "warning"
+  )
+```
+
+## Data dictionary
+
+```{r echo=FALSE}
+data_dictionary %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```

@@ -1,0 +1,179 @@
+---
+title: "Introduction to metabolic"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to metabolic}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = FALSE,
+  fig.align = "center"
+)
+options(width = 999)
+```
+
+```{r color, echo = FALSE, results='asis'}
+# from https://github.com/r-lib/crayon/issues/24#issuecomment-581068792
+# crayon needs to be explicitly activated in Rmd
+options(crayon.enabled = TRUE)
+# Hooks needs to be set to deal with outputs
+# thanks to fansi logic
+old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks,
+                                   which = c("output", "message", "error"))
+```
+
+The [{metabolic}](../index.html) package provides you all the tools necessary to reproduce the meta-analysis published in [Medicine & Science in Sports & Exercise](https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx).
+
+You can easily read the paper in the journal website through the function `metabolic::read_paper()`. It will take you to the online published paper in your default browser.
+
+```{r eval = FALSE}
+library(metabolic)
+
+read_paper()
+```
+
+```{block, type = 'rmdinfo'}
+We also provide you all the data used to perform the **meta-analysis** and the **GOfER** (Graphical Overview for Evidence Reviews) diagram. In case you are not familiar with R, or just would like to download the data, you can do so in the [metabolic_meta](metabolic_meta.html) and in the [metabolic_gofer](metabolic_gofer.html) vignettes.
+```
+
+## Produce an HTML report for a given clinical endpoint
+
+The easiest way of reproducing the meta-analysis for a given clinical endpoint is using the `metabolic::build_report()`function, which will build an **HTML report** with all the results, including **R output** and **plots**. Try it out! Make sure you also choose a path to save the report to!
+
+```{r eval=FALSE}
+library(metabolic)
+
+build_report(endpoint = "VO2max", path = "~/Documents/VO2max_report")
+```
+
+```{block, type = 'rmdinfo'}
+In case you want to reproduce the analysis on your own, we provided you the necessary tools for that! Here we will walk you through all the functionalities. In this example, we will be reproducing a **meta-analysis on VO2max**.
+```
+
+## Perform the meta-analysis
+
+```{r setup}
+library(metabolic)
+
+results <- perform_meta(endpoint = "VO2max")
+
+results
+```
+
+This function is going to perform the **overall** meta-analysis, followed by a **sensitivity analysis** where the meta-analysis in run again **omitting** one study at a time. This is done to ensure that the meta-analysis results are robust and is not being influenced by a single study.
+
+In case the **sensitivity analysis** detects that there is a single study influencing the results, the study identifier (Author Year) is printed, and the meta-analysis is re-done without that study. Importantly, this study is excluded from the **overall** meta-analysis, but is still considered in **subgroup** analyses. 
+
+```{block, type = 'rmdinfo'}
+As an example, here is the output from the **HbA1c** meta-analysis, where there **sensitivity analysis** recognizes a single-study influence on the results:
+```
+
+
+```{r}
+perform_meta(endpoint = "HbA1c")
+```
+
+## Small-study effects
+
+Small-study effects (the phenomenon which smaller studies present different - often larger - treatment effects than bigger sample studies) may be visualized through contour-enhanced funnel plots, as well as through radial plots.
+
+```{r fig.width=10, fig.height=5.5}
+results$meta_analysis$Overall %>% 
+  plot_small_study_effects()
+```
+
+## Sensitivity analysis
+
+You may also access the results from the **sensitivity analysis** and produce a forest plot:
+
+```{r}
+results$sensitivity_analysis$Overall
+```
+
+```{r fig.width=12, fig.height=12}
+results$sensitivity_analysis$Overall %>% 
+  plot_metabolic()
+```
+
+## Overall meta-analysis
+
+The **overall** meta-analysis results can be easily accessed through `.$meta_analysis$Overall`:
+
+```{r}
+results$meta_analysis$Overall
+```
+
+And the forest plot is generated through the generic function `metabolic::plot_metabolic()`:
+
+```{r fig.width=12, fig.height=12}
+results$meta_analysis$Overall %>% 
+  plot_metabolic()
+```
+
+## Subgroups meta-analysis
+
+### Overview
+
+The **overview** of the subgroups meta-analysis results can be easily generated through the function `metabolic::perform_bind()`
+
+```{r}
+results_bind <- perform_bind(results$meta_analysis)
+
+results_bind
+```
+
+And the **forest plot** can be generated through the generic function `metabolic::plot_metabolic()`:
+
+```{r fig.width=12, fig.height=9}
+results_bind %>% 
+  plot_metabolic()
+```
+
+### Subgroups
+
+Each **subgroup** analysis will have its own **meta-analysis** and **meta-regression**. Here is an example for the **Population** and **Age** subgroups:
+
+#### Population
+
+```{r}
+results$meta_analysis$Population
+```
+
+```{r fig.width=12, fig.height=18}
+results$meta_analysis$Population %>% 
+  plot_metabolic()
+```
+
+```{r}
+results$meta_regression$Population
+```
+
+```{r}
+results$meta_regression$Population %>% 
+  plot_metabolic()
+```
+
+#### Age
+
+```{r}
+results$meta_analysis$Age
+```
+
+```{r fig.width=12, fig.height=18}
+results$meta_analysis$Age %>% 
+  plot_metabolic()
+```
+
+```{r}
+results$meta_regression$Age
+```
+
+```{r}
+results$meta_regression$Age %>% 
+  plot_metabolic()
+```

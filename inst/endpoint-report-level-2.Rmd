@@ -1,0 +1,50 @@
+```{r}
+forest_height_subgroup <- switch ("{{endpoint}}",
+                                  "VO2max" = 18,
+                                  "Flow-mediated Dilation" = 9,
+                                  "BMI" = 12.5,
+                                  "Body Mass" = 16,
+                                  "Body Fat" = 13,
+                                  "Systolic Blood Pressure" = 12,
+                                  "Diastolic Blood Pressure" = 12,
+                                  "HDL" = 12,
+                                  "LDL" = 12,
+                                  "Triglycerides" = 12,
+                                  "Total Cholesterol" = 12,
+                                  "C-reactive Protein" = 7,
+                                  "Fasting Insulin" = 10,
+                                  "Fasting Glucose" = 12,
+                                  "HbA1c" = 9,
+                                  "HOMA-IR" = 9
+)
+```
+
+
+## &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{subgroup}} {.tabset}
+
+### Forest plot
+
+```{r, fig.height=forest_height_subgroup}
+results$meta_analysis$`{{subgroup}}` %>% 
+  plot_metabolic()
+```
+
+### R output
+
+```{r}
+results$meta_analysis$`{{subgroup}}`
+```
+
+### Meta-regression
+
+```{r}
+results$meta_regression$`{{subgroup}}`
+```
+
+### Bubble plot
+
+```{r, fig.height=6, fig.width=8, fig.cap='Bubble plot for the meta-regression for the subgroup analysis. The slope of the meta-regression (β) as well as the associated p-value are printed at the top of the graph.'}
+results$meta_regression$`{{subgroup}}` %>% 
+  plot_metabolic()
+```
+

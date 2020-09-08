@@ -1,0 +1,31 @@
+pre {
+  overflow-x: auto;
+}
+pre code {
+  word-wrap: normal;
+  white-space: pre;
+}
+
+.blue {
+  background-color:#e6f0ff;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.red {
+  background-color:#FF5733;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.purple {
+  background-color:#DC8CFA;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.gold {
+  background-color:#F0BD1F;
+  border-radius: 5px;
+  padding: 20px;
+}

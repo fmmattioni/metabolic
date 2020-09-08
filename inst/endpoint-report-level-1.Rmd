@@ -1,0 +1,141 @@
+---
+title: "Effectiveness of HIIE versus MICT in improving cardiometabolic risk factors in health and disease: a meta-analysis"
+subtitle: ""
+author: "Felipe Mattioni Maturana, Peter Martus, Stephan Zipfel and Andreas M Nieß"
+output:
+  html_document:
+    theme: lumen
+    highlight: tango
+    css: styles.css
+    toc: true
+    toc_depth: 5
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+params:
+  endpoint: NA
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  message = FALSE, 
+  warning = FALSE, 
+  cache = FALSE, 
+  fig.width = 12, 
+  fig.align = "center"
+)
+options(width = 999)
+
+endpoint <- params$endpoint
+
+forest_height_overall <- switch (
+  endpoint,
+  "VO2max" = 12,
+  "Flow-mediated Dilation" = 4,
+  "BMI" = 8,
+  "Body Mass" = 11,
+  "Body Fat" = 8,
+  "Systolic Blood Pressure" = 8,
+  "Diastolic Blood Pressure" = 8,
+  "HDL" = 8,
+  "LDL" = 8,
+  "Triglycerides" = 8,
+  "Total Cholesterol" = 8,
+  "C-reactive Protein" = 4,
+  "Fasting Insulin" = 6,
+  "Fasting Glucose" = 8,
+  "HbA1c" = 6,
+  "HOMA-IR" = 6
+)
+```
+
+```{r}
+library(metabolic)
+```
+
+> Mattioni Maturana, Felipe, Martus, Peter, Zipfel, Stephan, Nieß, AM (2020). “Effectiveness of HIIE versus
+MICT in Improving Cardiometabolic Risk Factors in Health and Disease: a meta-anaylsis.” Medicine &
+Science in Sports & Exercise, *Published Ahead of Print*. doi: 10.1249/MSS.0000000000002506
+
+---
+
+<div class="blue">
+## `r endpoint` meta-analysis
+</div>
+
+---
+
+## &nbsp;&nbsp;&nbsp;&nbsp;Overall {.tabset}
+
+### Forest plot
+
+```{r, fig.height = forest_height_overall}
+results <- perform_meta(endpoint = endpoint)
+
+results$meta_analysis$Overall %>% 
+  plot_metabolic()
+```
+
+### R output
+
+```{r}
+results$meta_analysis$Overall
+```
+
+### Sensitivity analysis {.tabset}
+
+#### Forest plot
+
+```{r, fig.height = forest_height_overall}
+results$sensitivity_analysis$Overall %>% 
+  plot_metabolic()
+```
+
+#### R output
+
+```{r}
+results$sensitivity_analysis$Overall
+```
+
+### Small-study effects
+
+```{r, fig.height=5.5, fig.cap='Left panel shows the contour-enhanced funnel plot for the meta-analysis. The shaded areas represent the p-value: light gray p < 0.01, gray 0.05 > p > 0.01, dark gray 0.1 > p > 0.05. The standard error of each study is plotted as a function of the effect size (Cohen’s d). Negative and positive x-axis values represent a favorable effect for MICT and HIIE, respectively. Right panel shows the radial plot, with the standardized treatment effect (z-score) plotted as a function of the inverse of the standard error. The dashed line represents the regression line, and the continuous line represents the regression line from the Egger Test.'}
+results$meta_analysis$Overall %>% 
+  plot_small_study_effects()
+```
+
+
+## &nbsp;&nbsp;&nbsp;&nbsp;Subgroups Overview {.tabset}
+
+### Forest plot
+
+```{r, fig.height = 9}
+results_bind <- perform_bind(results$meta_analysis)
+
+results_bind %>% 
+  plot_metabolic()
+```
+
+### R output
+
+```{r}
+results_bind
+```
+
+```{r include=FALSE}
+out <- results %>% 
+  dplyr::filter(subgroup != "Overall") %>% 
+  dplyr::mutate(
+    endpoint = endpoint,
+    output = purrr::map2(endpoint, subgroup, 
+                         ~ knitr::knit_expand(file =  system.file("endpoint-report-level-2.Rmd", 
+                                                                  package = "metabolic"),
+                                              endpoint = .x,
+                                              subgroup = .y))
+  ) %>% 
+  dplyr::select(output) %>% 
+  tibble::deframe()
+```
+
+`r knitr::knit(text = unlist(out))`

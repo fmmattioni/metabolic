@@ -1,0 +1,50 @@
+Package: metabolic
+Title: Dataset and Functions for Reproducing Meta-analysis
+Version: 0.1.0
+Authors@R: 
+    person(given = "Felipe",
+           family = "Mattioni Maturana",
+           role = c("aut", "cre"),
+           email = "felipe.mattioni@med.uni-tuebigen.de",
+           comment = c(ORCID = "0000-0002-4221-6104"))
+Description: Dataset and functions from the meta-analysis published in [...]. It contains all the data and functions to reproduce the analysis.
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+URL: https://github.com/fmmattioni/metabolic
+BugReports: https://github.com/fmmattioni/metabolic/issues
+Imports: 
+    tibble,
+    magrittr,
+    usethis,
+    dplyr (>= 1.0.0),
+    ggplot2 (>= 3.2.1),
+    ggfittext,
+    cli (>= 2.0.1),
+    forcats,
+    ggimage,
+    patchwork (>= 1.0.0),
+    scales,
+    stringr,
+    tidyr (>= 1.0.2),
+    purrr,
+    stringi,
+    meta (>= 4.11-0),
+    glue,
+    rmarkdown,
+    metafor,
+    ggtext (>= 0.1.0)
+Depends: 
+    R (>= 3.2)
+Suggests: 
+    knitr,
+    here,
+    Rd2roxygen,
+    kableExtra,
+    fansi,
+    downloadthis (>= 0.2.0)
+VignetteBuilder: knitr
+Remotes: 
+    wilkelab/ggtext

@@ -1,0 +1,12 @@
+citHeader("To cite metabolic in publications use:")
+
+bibentry(
+  "Article",
+  title="Effectiveness of HIIE versus MICT in Improving Cardiometabolic Risk Factors in Health and Disease: a meta-anaylsis",
+  author="Mattioni Maturana, Felipe and Martus, Peter and Zipfel, Stephan and Nieß, Andreas M",
+  journal="Medicine & Science in Sports & Exercise",
+  volume="Published Ahead of Print",
+  year=2020,
+  url="https://journals.lww.com/10.1249/MSS.0000000000002506",
+  doi="10.1249/MSS.0000000000002506"
+)

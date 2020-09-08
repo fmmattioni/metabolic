@@ -1,0 +1,83 @@
+destination: docs
+
+template:
+  params:
+    bootswatch: sandstone
+    ganalytics: UA-126092763-1
+
+authors:
+  Felipe Mattioni Maturana:
+    href: https://fmattioni.me
+
+toc:
+  depth: 3
+
+development:
+  mode: unreleased
+
+navbar:
+  title: ~
+  type: default
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "Get started"
+      href: articles/metabolic.html
+    - text: "Articles"
+      icon: fa-book
+      menu:
+      - text: "Datasets"
+      - text: "metabolic_meta"
+        icon: fa-database
+        href: articles/metabolic_meta.html
+      - text: "metabolic_gofer"
+        icon: fa-database
+        href: articles/metabolic_gofer.html
+      - text: "------------------"
+      - text: "Building a GOfER with 'ggplot2' and 'patchwork'"
+        icon: fa-wrench
+        href: articles/gofer.html
+    - text: Reference
+      icon: fa-balance-scale
+      href: reference/index.html
+    - text: News
+      icon: fa-newspaper
+      menu:
+      - text: "Change log"
+        href: news/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/fmmattioni/downloadthis
+  - icon: fa-twitter fa-lg
+    href: https://twitter.com/felipe_mattioni
+
+reference:
+- title: Datasets
+  desc: >
+    Datasets for reproducing the meta-analysis.
+  contents:
+  - metabolic_gofer
+  - metabolic_meta
+- title: HTML Report
+  desc: >
+    Build an HTML report with all the analyses from a given clinical endpoint.
+  contents:
+  - build_report
+- title: Reproduce meta-analysis
+  desc: >
+    Functions used to reproduce the meta-analysis.
+  contents:
+  - perform_meta
+  - perform_bind
+- title: Build plots
+  desc: >
+    Functions to build forest plots, bubble plots, contour-enhanced funnel plots, and radial plots.
+  contents:
+  - build_gofer
+  - plot_metabolic
+  - plot_small_study_effects
+- title: Read the paper
+  desc: >
+    Read the paper in the journal website.
+  contents:
+  - read_paper
