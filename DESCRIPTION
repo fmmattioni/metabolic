@@ -30,12 +30,9 @@ Imports:
     stringr,
     tidyr (>= 1.0.2),
     purrr,
-    stringi,
     meta (>= 4.11-0),
     glue,
-    rmarkdown,
-    metafor,
-    ggtext (>= 0.1.0)
+    rmarkdown
 Depends: 
     R (>= 3.2)
 Suggests: 
@@ -46,5 +43,4 @@ Suggests:
     fansi,
     downloadthis (>= 0.2.0),
     spelling
-VignetteBuilder: knitr
 Language: en-US
