@@ -13,3 +13,5 @@
 ^docs$
 ^pkgdown$
 ^doc$
+^CRAN-RELEASE$
+^vignettes$

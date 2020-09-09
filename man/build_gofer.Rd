@@ -22,7 +22,7 @@ A \code{patchwork} object
 It is recommended to set \code{save = TRUE} and indicate the \code{path} to save to, as the plot is not going to look good in the \code{Plots} panel.
 }
 \examples{
-\dontrun{
-build_gofer(page = "1", save = TRUE, path = "~/Documents/metabolic_gofer_page_1")
+if (interactive()) {
+ build_gofer(page = "1", save = TRUE, path = "~/Documents/metabolic_gofer_page_1")
 }
 }

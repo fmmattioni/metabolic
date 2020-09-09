@@ -20,7 +20,7 @@
 #' @importFrom stats lm
 #'
 #' @examples
-#' \dontrun{
+#' if(interactive()) {
 #' # Perform meta-analysis on VO2max
 #' results <- perform_meta(endpoint = "VO2max")
 #'

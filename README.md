@@ -119,23 +119,7 @@ perform_meta(endpoint = "VO2max")
 
 ## Build a GOfER (Graphical Overview for Evidence Reviews) diagram
 
-``` r
-build_gofer(page = "1")
-#> ───────────────────────────────────────────  * Building GOfER - page 1 *  ──────────────────────────────────────────
-#> ✓ Building basic grid
-#> ✓ Building Study
-#> ✓ Building Sample
-#> ✓ Building Anamnese
-#> ✓ Building Age
-#> ✓ Building Design
-#> ✓ Building HIIE
-#> ✓ Building Compliance
-#> ✓ Building Clinical Endpoints
-#> ✓ Finishing up GOfER with 'patchwork'
-#> ────────────────────────────────────────────────────  * DONE *  ────────────────────────────────────────────────────
-```
-
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="vignettes/img/gofer_page_1.png" width="100%" />
 
 ## Citation
 

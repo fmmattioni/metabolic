@@ -25,7 +25,7 @@ Plot results from the \code{perform_meta()} and \code{perform_bind()} function. 
 This function can be used to plot the results derived from both \code{perform_meta()} and \code{perform_bind()}. It can produce forests and bubble plots, depending on the object passed to the function.
 }
 \examples{
-\dontrun{
+if(interactive()) {
 # Perform meta-analysis on VO2max
 results <- perform_meta(endpoint = "VO2max")
 

@@ -27,7 +27,7 @@ an HTML file.
 Build an HTML report with all the results from the chosen clinical endpoint
 }
 \examples{
-\dontrun{
+if(interactive()) {
 # Build an HTML report on VO2max
 build_report(endpoint = "VO2max", path = "~/Downloads/metabolic_report")
 }

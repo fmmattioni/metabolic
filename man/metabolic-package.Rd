@@ -4,7 +4,7 @@
 \name{metabolic-package}
 \alias{metabolic}
 \alias{metabolic-package}
-\title{metabolic: Dataset and Functions for Reproducing Meta-analysis}
+\title{metabolic: Datasets and Functions for Reproducing Meta-Analyses}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 

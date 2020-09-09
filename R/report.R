@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' if(interactive()) {
 #' # Build an HTML report on VO2max
 #' build_report(endpoint = "VO2max", path = "~/Downloads/metabolic_report")
 #' }

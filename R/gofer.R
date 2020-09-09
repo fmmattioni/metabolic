@@ -12,8 +12,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' build_gofer(page = "1", save = TRUE, path = "~/Documents/metabolic_gofer_page_1")
+#' if (interactive()) {
+#'  build_gofer(page = "1", save = TRUE, path = "~/Documents/metabolic_gofer_page_1")
 #' }
 build_gofer <- function(page = c("1", "2"), save = FALSE,  path,  format = ".png") {
 
@@ -373,7 +373,7 @@ build_gofer <- function(page = c("1", "2"), save = FALSE,  path,  format = ".png
     path <- paste0(path, format)
 
     usethis::ui_todo("Saving GOfER to disk...")
-    ggplot2::ggsave(filename = path, plot = p_final, width = 42, height = 20)
+    ggplot2::ggsave(filename = path, plot = p_final, width = 42, height = 20, dpi = 500)
 
     name <- paste0("GofER - page ", page)
     usethis::ui_done("Succesfully saved {usethis::ui_field(name)} to {usethis::ui_value(path)}")

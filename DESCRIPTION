@@ -1,5 +1,5 @@
 Package: metabolic
-Title: Dataset and Functions for Reproducing Meta-analysis
+Title: Datasets and Functions for Reproducing Meta-Analyses
 Version: 0.1.0
 Authors@R: 
     person(given = "Felipe",
