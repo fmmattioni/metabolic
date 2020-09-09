@@ -21,6 +21,7 @@ a \link[tibble:tibble-package]{tibble} with named lists.
 Perform the meta-analysis, sensitivity analysis, and meta-regression on the chosen clinical endpoint.
 }
 \examples{
+if (interactive()) {
 # Perform meta-analysis on VO2max
 results <- perform_meta(endpoint = "VO2max")
 results
@@ -30,4 +31,5 @@ results$meta_analysis$Overall
 
 # Acess results of Age meta-regression
 results$meta_regression$Age
+}
 }

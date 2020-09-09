@@ -16,6 +16,7 @@ a \link[tibble:tibble-package]{tibble} with named lists.
 Combine the subgroup meta-analyses to ...
 }
 \examples{
+if (interactive()) {
 # Perform meta-analysis on VO2max
 results <- perform_meta(endpoint = "VO2max")
 results
@@ -23,4 +24,5 @@ results
 # Combine Overall and Subgroups meta-analysis results
 results_bind <- perform_bind(results$meta_analysis)
 results_bind
+}
 }

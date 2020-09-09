@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @examples
+#' if (interactive()) {
 #' # Perform meta-analysis on VO2max
 #' results <- perform_meta(endpoint = "VO2max")
 #' results
@@ -17,6 +18,7 @@
 #'
 #' # Acess results of Age meta-regression
 #' results$meta_regression$Age
+#' }
 perform_meta <- function(
   endpoint = c(
     "VO2max",
@@ -260,6 +262,7 @@ perform_meta <- function(
 #' @export
 #'
 #' @examples
+#' if (interactive()) {
 #' # Perform meta-analysis on VO2max
 #' results <- perform_meta(endpoint = "VO2max")
 #' results
@@ -267,6 +270,7 @@ perform_meta <- function(
 #' # Combine Overall and Subgroups meta-analysis results
 #' results_bind <- perform_bind(results$meta_analysis)
 #' results_bind
+#' }
 perform_bind <- function(x) {
 
   chkclass(x = x, class = "list")
