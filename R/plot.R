@@ -185,7 +185,8 @@ plot_metabolic.metareg <- function(x, save = FALSE, path, format = ".png") {
       meta::metareg()
 
     out <- function() {
-      par(mfrow = c(1, 1))
+      oldpar <- par(mfrow = c(1, 1), no.readonly = TRUE)
+      on.exit(par(oldpar))
       meta::bubble(
         x,
         xlab = xlab,
@@ -196,7 +197,8 @@ plot_metabolic.metareg <- function(x, save = FALSE, path, format = ".png") {
     }
   } else {
     out <- function() {
-      par(mfrow = c(1, 1))
+      oldpar <- par(mfrow = c(1, 1), no.readonly = TRUE)
+      on.exit(par(oldpar))
       meta::bubble(
         x,
         xlab = xlab,
@@ -421,7 +423,8 @@ plot_small_study_effects <- function(x, save = FALSE, path, format = ".png") {
     usethis::ui_todo("Saving {usethis::ui_field(endpoint)} - small-study effects to disk...")
 
     png(filename = path, width = 10, height = 5, units = "in", res = 200)
-    par(mfrow = c(1, 2))
+    oldpar <- par(mfrow = c(1, 2), no.readonly = TRUE)
+    on.exit(par(oldpar))
     plot_funnel()
     plot_bias()
     invisible(dev.off())
@@ -429,7 +432,8 @@ plot_small_study_effects <- function(x, save = FALSE, path, format = ".png") {
     usethis::ui_done("Succesfully saved {usethis::ui_field(endpoint)} - small-study effects to {usethis::ui_value(path)}")
   }
 
-  par(mfrow = c(1, 2))
+  oldpar <- par(mfrow = c(1, 2), no.readonly = TRUE)
+  on.exit(par(oldpar))
   plot_funnel()
   plot_bias()
 }
