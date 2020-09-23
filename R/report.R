@@ -12,7 +12,7 @@
 #' @examples
 #' if(interactive()) {
 #' # Build an HTML report on VO2max
-#' build_report(endpoint = "VO2max", path = "~/Downloads/metabolic_report")
+#' build_report(endpoint = "VO2max", path = tempfile())
 #' }
 build_report <- function(
   endpoint = c(

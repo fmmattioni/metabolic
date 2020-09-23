@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'  build_gofer(page = "1", save = TRUE, path = "~/Documents/metabolic_gofer_page_1")
+#'  build_gofer(page = "1", save = TRUE, path = tempfile())
 #' }
 build_gofer <- function(page = c("1", "2"), save = FALSE,  path,  format = ".png") {
 

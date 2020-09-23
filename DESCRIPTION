@@ -10,7 +10,7 @@ Authors@R:
 Description: Dataset and functions from the meta-analysis published in Medicine & Science in Sports & Exercise. 
     It contains all the data and functions to reproduce the analysis.
     "Effectiveness of HIIE versus MICT in Improving Cardiometabolic Risk Factors in Health and Disease: A Meta-analysis".
-    Felipe Mattioni Maturana, Peter Martus, Stephan Zipfel, Andreas M Nieß (2020)<doi:10.1249/MSS.0000000000002506>.
+    Felipe Mattioni Maturana, Peter Martus, Stephan Zipfel, Andreas M Nieß (2020) <doi:10.1249/MSS.0000000000002506>.
 License: CC0
 Encoding: UTF-8
 LazyData: true

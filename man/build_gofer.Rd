@@ -23,6 +23,6 @@ It is recommended to set \code{save = TRUE} and indicate the \code{path} to save
 }
 \examples{
 if (interactive()) {
- build_gofer(page = "1", save = TRUE, path = "~/Documents/metabolic_gofer_page_1")
+ build_gofer(page = "1", save = TRUE, path = tempfile())
 }
 }
