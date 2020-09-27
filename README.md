@@ -11,6 +11,10 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 status](https://www.r-pkg.org/badges/version/metabolic)](https://CRAN.R-project.org/package=metabolic)
 [![R build
 status](https://github.com/fmmattioni/metabolic/workflows/R-CMD-check/badge.svg)](https://github.com/fmmattioni/metabolic/actions)
+[![Monthly downloads
+badge](https://cranlogs.r-pkg.org/badges/last-month/metabolic?color=blue)](https://CRAN.R-project.org/package=metabolic)
+[![Total downloads
+badge](https://cranlogs.r-pkg.org/badges/grand-total/metabolic?color=blue)](https://CRAN.R-project.org/package=metabolic)
 <!-- badges: end -->
 
 The goal of `metabolic` is to provide all the data and the tools
@@ -91,7 +95,7 @@ metabolic::metabolic_gofer
 library(metabolic)
 
 perform_meta(endpoint = "VO2max")
-#> ────────────────────────────────────────────  * VO2max meta-analysis *  ────────────────────────────────────────────
+#> ───────────────────────────────────────────────  * VO2max meta-analysis *  ──────────────────────────────────────────────
 #> ✓ 'Overall'
 #> ✓       └─ Performing meta-analysis
 #> ✓       └─ Performing sensitivity analysis
@@ -103,7 +107,7 @@ perform_meta(endpoint = "VO2max")
 #> ✓ Performing meta-analysis and meta-regression on the Type of Exercise subgroup
 #> ✓ Performing meta-analysis and meta-regression on the Baseline subgroup
 #> ✓ Performing meta-analysis and meta-regression on the Type of HIIE subgroup
-#> ────────────────────────────────────────────────────  * DONE *  ────────────────────────────────────────────────────
+#> ───────────────────────────────────────────────────────  * DONE *  ──────────────────────────────────────────────────────
 #> # A tibble: 8 x 4
 #>   subgroup          meta_analysis sensitivity_analysis meta_regression
 #>   <chr>             <named list>  <named list>         <named list>   
@@ -134,7 +138,7 @@ citation("metabolic")
 #> Sports & Exercise_, *Published Ahead of Print*. doi:
 #> 10.1249/MSS.0000000000002506 (URL:
 #> https://doi.org/10.1249/MSS.0000000000002506), <URL:
-#> https://journals.lww.com/10.1249/MSS.0000000000002506>.
+#> https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -144,7 +148,7 @@ citation("metabolic")
 #>     journal = {Medicine & Science in Sports & Exercise},
 #>     volume = {Published Ahead of Print},
 #>     year = {2020},
-#>     url = {https://journals.lww.com/10.1249/MSS.0000000000002506},
+#>     url = {https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx},
 #>     doi = {10.1249/MSS.0000000000002506},
 #>   }
 ```
