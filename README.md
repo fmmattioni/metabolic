@@ -24,7 +24,14 @@ Exercise](https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE
 
 ## Installation
 
-You can install the development version of metabolic from from
+You can install the released version of `metabolic` from
+[CRAN](https://CRAN.R-project.org/package=metabolic) with:
+
+``` r
+install.packages("metabolic")
+```
+
+You can install the development version of `metabolic` from from
 [GitHub](https://github.com/fmmattioni/metabolic) with:
 
 ``` r

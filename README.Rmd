@@ -28,7 +28,13 @@ The goal of `metabolic` is to provide all the data and the tools necessary to re
 
 ## Installation
 
-You can install the development version of metabolic from from [GitHub](https://github.com/fmmattioni/metabolic) with:
+You can install the released version of `metabolic` from [CRAN](https://CRAN.R-project.org/package=metabolic) with:
+
+``` r
+install.packages("metabolic")
+```
+
+You can install the development version of `metabolic` from from [GitHub](https://github.com/fmmattioni/metabolic) with:
 
 ``` r
 # install.packages("remotes")
