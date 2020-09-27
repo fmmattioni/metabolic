@@ -19,7 +19,10 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="Datasets and Functions for Reproducing Meta-Analyses">
-<meta property="og:description" content="Dataset and functions from the meta-analysis published in Medicine &amp; Science in Sports &amp; Exercise. It contains all the data and functions to reproduce the analysis.">
+<meta property="og:description" content='Dataset and functions from the meta-analysis published in Medicine &amp; Science in Sports &amp; Exercise. 
+    It contains all the data and functions to reproduce the analysis.
+    "Effectiveness of HIIE versus MICT in Improving Cardiometabolic Risk Factors in Health and Disease: A Meta-analysis".
+    Felipe Mattioni Maturana, Peter Martus, Stephan Zipfel, Andreas M Nieß (2020) &lt;doi:10.1249/MSS.0000000000002506&gt;.'>
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -154,8 +157,7 @@
 <p>You can install the development version of metabolic from from <a href="https://github.com/fmmattioni/metabolic">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="co"># install.packages("remotes")</span>
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"fmmattioni/metabolic"</span>)
-</pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"fmmattioni/metabolic"</span><span class="op">)</span></pre></div>
 </div>
 <div id="datasets" class="section level2">
 <h2 class="hasAnchor">
@@ -164,7 +166,7 @@
 <h3 class="hasAnchor">
 <a href="#dataset-to-reproduce-meta-analyses" class="anchor"></a>Dataset to reproduce meta-analyses</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">metabolic</span>::<span class="kw"><a href="reference/metabolic_meta.html">metabolic_meta</a></span>
+<span class="fu">metabolic</span><span class="fu">::</span><span class="va"><a href="reference/metabolic_meta.html">metabolic_meta</a></span>
 <span class="co">#&gt; # A tibble: 391 x 21</span>
 <span class="co">#&gt;    study endpoint population   age category_age duration category_durati…</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;fct&gt;      &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt;           </span>
@@ -182,14 +184,13 @@
 <span class="co">#&gt; #   category_men_ratio &lt;fct&gt;, type_exercise &lt;chr&gt;, bsln &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   bsln_adjusted &lt;dbl&gt;, category_bsln &lt;fct&gt;, N_HIIE &lt;dbl&gt;, Mean_HIIE &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   SD_HIIE &lt;dbl&gt;, N_MICT &lt;dbl&gt;, Mean_MICT &lt;dbl&gt;, SD_MICT &lt;dbl&gt;, HIIE &lt;chr&gt;,</span>
-<span class="co">#&gt; #   desired_effect &lt;chr&gt;</span>
-</pre></div>
+<span class="co">#&gt; #   desired_effect &lt;chr&gt;</span></pre></div>
 </div>
 <div id="dataset-to-build-the-gofer-diagram" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dataset-to-build-the-gofer-diagram" class="anchor"></a>Dataset to build the GOfER diagram</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">metabolic</span>::<span class="kw"><a href="reference/metabolic_gofer.html">metabolic_gofer</a></span>
+<span class="fu">metabolic</span><span class="fu">::</span><span class="va"><a href="reference/metabolic_gofer.html">metabolic_gofer</a></span>
 <span class="co">#&gt; # A tibble: 115 x 33</span>
 <span class="co">#&gt;    study groups sample_populati… sample_fitness sample_men_ratio anamnese_smoker</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;                     &lt;dbl&gt; &lt;chr&gt;          </span>
@@ -214,18 +215,17 @@
 <span class="co">#&gt; #   endpoints_hdl &lt;chr&gt;, endpoints_ldl &lt;chr&gt;, endpoints_triglycerides &lt;chr&gt;,</span>
 <span class="co">#&gt; #   endpoints_total_cholesterol &lt;chr&gt;, endpoints_insulin &lt;chr&gt;,</span>
 <span class="co">#&gt; #   endpoints_glucose &lt;chr&gt;, endpoints_homa &lt;chr&gt;, endpoints_bmi &lt;chr&gt;,</span>
-<span class="co">#&gt; #   endpoints_crp &lt;chr&gt;, endpoints_hba1c &lt;chr&gt;</span>
-</pre></div>
+<span class="co">#&gt; #   endpoints_crp &lt;chr&gt;, endpoints_hba1c &lt;chr&gt;</span></pre></div>
 </div>
 </div>
 <div id="reproduce-meta-analysis-for-each-clinical-endpoint" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reproduce-meta-analysis-for-each-clinical-endpoint" class="anchor"></a>Reproduce meta-analysis for each clinical endpoint</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span><span class="op">)</span>
 
-<span class="fu"><a href="reference/perform_meta.html">perform_meta</a></span>(endpoint = <span class="st">"VO2max"</span>)
-<span class="co">#&gt; ────────────────────────────────────────────  * VO2max meta-analysis *  ────────────────────────────────────────────</span>
+<span class="fu"><a href="reference/perform_meta.html">perform_meta</a></span><span class="op">(</span>endpoint <span class="op">=</span> <span class="st">"VO2max"</span><span class="op">)</span>
+<span class="co">#&gt; ───────────────────────────────────────────────  * VO2max meta-analysis *  ──────────────────────────────────────────────</span>
 <span class="co">#&gt; ✓ 'Overall'</span>
 <span class="co">#&gt; ✓       └─ Performing meta-analysis</span>
 <span class="co">#&gt; ✓       └─ Performing sensitivity analysis</span>
@@ -237,7 +237,7 @@
 <span class="co">#&gt; ✓ Performing meta-analysis and meta-regression on the Type of Exercise subgroup</span>
 <span class="co">#&gt; ✓ Performing meta-analysis and meta-regression on the Baseline subgroup</span>
 <span class="co">#&gt; ✓ Performing meta-analysis and meta-regression on the Type of HIIE subgroup</span>
-<span class="co">#&gt; ────────────────────────────────────────────────────  * DONE *  ────────────────────────────────────────────────────</span>
+<span class="co">#&gt; ───────────────────────────────────────────────────────  * DONE *  ──────────────────────────────────────────────────────</span>
 <span class="co">#&gt; # A tibble: 8 x 4</span>
 <span class="co">#&gt;   subgroup          meta_analysis sensitivity_analysis meta_regression</span>
 <span class="co">#&gt;   &lt;chr&gt;             &lt;named list&gt;  &lt;named list&gt;         &lt;named list&gt;   </span>
@@ -248,8 +248,7 @@
 <span class="co">#&gt; 5 Men Ratio         &lt;metacont&gt;    &lt;lgl [1]&gt;            &lt;metareg&gt;      </span>
 <span class="co">#&gt; 6 Type of Exercise  &lt;metacont&gt;    &lt;lgl [1]&gt;            &lt;metareg&gt;      </span>
 <span class="co">#&gt; 7 Baseline Values   &lt;metacont&gt;    &lt;lgl [1]&gt;            &lt;metareg&gt;      </span>
-<span class="co">#&gt; 8 Type of HIIE      &lt;metacont&gt;    &lt;lgl [1]&gt;            &lt;metareg&gt;</span>
-</pre></div>
+<span class="co">#&gt; 8 Type of HIIE      &lt;metacont&gt;    &lt;lgl [1]&gt;            &lt;metareg&gt;</span></pre></div>
 </div>
 <div id="build-a-gofer-graphical-overview-for-evidence-reviews-diagram" class="section level2">
 <h2 class="hasAnchor">
@@ -260,7 +259,7 @@
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"metabolic"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"metabolic"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite metabolic in publications use:</span>
 <span class="co">#&gt; </span>
@@ -270,7 +269,7 @@
 <span class="co">#&gt; Sports &amp; Exercise_, *Published Ahead of Print*. doi:</span>
 <span class="co">#&gt; 10.1249/MSS.0000000000002506 (URL:</span>
 <span class="co">#&gt; https://doi.org/10.1249/MSS.0000000000002506), &lt;URL:</span>
-<span class="co">#&gt; https://journals.lww.com/10.1249/MSS.0000000000002506&gt;.</span>
+<span class="co">#&gt; https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx&gt;.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
 <span class="co">#&gt; </span>
@@ -280,10 +279,9 @@
 <span class="co">#&gt;     journal = {Medicine &amp; Science in Sports &amp; Exercise},</span>
 <span class="co">#&gt;     volume = {Published Ahead of Print},</span>
 <span class="co">#&gt;     year = {2020},</span>
-<span class="co">#&gt;     url = {https://journals.lww.com/10.1249/MSS.0000000000002506},</span>
+<span class="co">#&gt;     url = {https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx},</span>
 <span class="co">#&gt;     doi = {10.1249/MSS.0000000000002506},</span>
-<span class="co">#&gt;   }</span>
-</pre></div>
+<span class="co">#&gt;   }</span></pre></div>
 </div>
 </div>
   </div>
@@ -292,6 +290,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=metabolic">https://​cloud.r-project.org/​package=metabolic</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/fmmattioni/metabolic/">https://​github.com/​fmmattioni/​metabolic/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/fmmattioni/metabolic/issues">https://​github.com/​fmmattioni/​metabolic/​issues</a>
@@ -325,6 +325,8 @@
 <li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://CRAN.R-project.org/package=metabolic"><img src="https://www.r-pkg.org/badges/version/metabolic" alt="CRAN status"></a></li>
 <li><a href="https://github.com/fmmattioni/metabolic/actions"><img src="https://github.com/fmmattioni/metabolic/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=metabolic"><img src="https://cranlogs.r-pkg.org/badges/last-month/metabolic?color=blue" alt="Monthly downloads badge"></a></li>
+<li><a href="https://CRAN.R-project.org/package=metabolic"><img src="https://cranlogs.r-pkg.org/badges/grand-total/metabolic?color=blue" alt="Total downloads badge"></a></li>
 </ul>
 </div>
 </div>
@@ -336,7 +338,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

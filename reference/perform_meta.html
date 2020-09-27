@@ -198,12 +198,12 @@
     <p>Perform the meta-analysis, sensitivity analysis, and meta-regression on the chosen clinical endpoint.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>perform_meta</span>(
-  endpoint = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"VO2max"</span>, <span class='st'>"Flow-mediated Dilation"</span>, <span class='st'>"BMI"</span>, <span class='st'>"Body Mass"</span>, <span class='st'>"Body Fat"</span>,
+    <pre class="usage"><span class='fu'>perform_meta</span><span class='op'>(</span>
+  endpoint <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"VO2max"</span>, <span class='st'>"Flow-mediated Dilation"</span>, <span class='st'>"BMI"</span>, <span class='st'>"Body Mass"</span>, <span class='st'>"Body Fat"</span>,
     <span class='st'>"Systolic Blood Pressure"</span>, <span class='st'>"Diastolic Blood Pressure"</span>, <span class='st'>"HDL"</span>, <span class='st'>"LDL"</span>, <span class='st'>"Triglycerides"</span>,
     <span class='st'>"Total Cholesterol"</span>, <span class='st'>"C-reactive Protein"</span>, <span class='st'>"Fasting Insulin"</span>, <span class='st'>"Fasting Glucose"</span>,
-    <span class='st'>"HbA1c"</span>, <span class='st'>"HOMA-IR"</span>)
-)</pre>
+    <span class='st'>"HbA1c"</span>, <span class='st'>"HOMA-IR"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,17 +219,17 @@
     <p>a <a href='https://tibble.tidyverse.org/reference/tibble-package.html'>tibble</a> with named lists.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Perform meta-analysis on VO2max</span>
-<span class='kw'>results</span> <span class='op'>&lt;-</span> <span class='fu'>perform_meta</span>(endpoint = <span class='st'>"VO2max"</span>)
-<span class='kw'>results</span>
+<span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'>perform_meta</span><span class='op'>(</span>endpoint <span class='op'>=</span> <span class='st'>"VO2max"</span><span class='op'>)</span>
+<span class='va'>results</span>
 
 <span class='co'># Access results of Overall meta-analysis</span>
-<span class='kw'>results</span><span class='op'>$</span><span class='kw'>meta_analysis</span><span class='op'>$</span><span class='kw'>Overall</span>
+<span class='va'>results</span><span class='op'>$</span><span class='va'>meta_analysis</span><span class='op'>$</span><span class='va'>Overall</span>
 
 <span class='co'># Acess results of Age meta-regression</span>
-<span class='kw'>results</span><span class='op'>$</span><span class='kw'>meta_regression</span><span class='op'>$</span><span class='kw'>Age</span>
-}
+<span class='va'>results</span><span class='op'>$</span><span class='va'>meta_regression</span><span class='op'>$</span><span class='va'>Age</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -246,7 +246,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -177,21 +177,21 @@ You can of course read the source code to check how it is done, but I am going t
 <p>Please, take a look at <code>metabolic_gofer</code> to see the data structure being used in to build the GOfER.</p>
 <p>Your first step should be to define in how many pages you want to display your information, given the amount of details from each study you want to provide. For this vignette, we are going to make an example with <strong>10 studies</strong>, but our original GOfER had <strong>28 studies</strong> in one page. Therefore, the first step is to filter these data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span><span class="op">)</span>
 
-<span class="kw">data_gofer</span> <span class="op">&lt;-</span> <span class="kw">metabolic_gofer</span> <span class="op">%&gt;%</span> 
+<span class="va">data_gofer</span> <span class="op">&lt;-</span> <span class="va">metabolic_gofer</span> <span class="op">%&gt;%</span> 
   <span class="co">## arrange study and groups to show in the correct order in the graph</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">study</span>), <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">groups</span>)) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(study = <span class="kw">forcats</span>::<span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span>(<span class="kw">study</span>)) <span class="op">%&gt;%</span>
-  <span class="kw">tidyr</span>::<span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest_legacy.html">nest_legacy</a></span>(<span class="op">-</span><span class="kw">study</span>) <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">study</span><span class="op">)</span>, <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">groups</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>study <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">study</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest_legacy.html">nest_legacy</a></span><span class="op">(</span><span class="op">-</span><span class="va">study</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co">## get the first 10 studies</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="fl">10</span>)
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
 
 <span class="co">## here we get the number of studies + 1 to show the lines in the graph</span>
 <span class="co">## since we have 10 studies, this is simply 10 + 1</span>
-<span class="kw">n_lines</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="op">+</span> <span class="fl">1</span>
+<span class="va">n_lines</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="op">+</span> <span class="fl">1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">data_gofer</span>, n = <span class="fl">Inf</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data_gofer</span>, n <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 x 2</span>
 <span class="co">#&gt;    study            data             </span>
 <span class="co">#&gt;    &lt;fct&gt;            &lt;list&gt;           </span>
@@ -204,78 +204,74 @@ You can of course read the source code to check how it is done, but I am going t
 <span class="co">#&gt;  7 Burgomaster 2008 &lt;tibble [2 × 32]&gt;</span>
 <span class="co">#&gt;  8 Beetham 2019     &lt;tibble [2 × 32]&gt;</span>
 <span class="co">#&gt;  9 Bækkerud 2016    &lt;tibble [2 × 32]&gt;</span>
-<span class="co">#&gt; 10 Abdelbasset 2020 &lt;tibble [2 × 32]&gt;</span>
-</pre></div>
+<span class="co">#&gt; 10 Abdelbasset 2020 &lt;tibble [2 × 32]&gt;</span></pre></div>
 </div>
 <div id="before-we-begin-plotting" class="section level3">
 <h3 class="hasAnchor">
 <a href="#before-we-begin-plotting" class="anchor"></a>Before we begin plotting…</h3>
 <p>I am going to set a new <code>ggplot2</code> theme. Here we are setting common settings for a theme that we are going to use in every plot. Some settings differ depending if the plot has only text or if there is line plot, for example.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://patchwork.data-imaginist.com">patchwork</a></span>)
-</pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">theme_gofer</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">strip_background</span> = <span class="st">"#1f58b5"</span>, <span class="kw">margins</span> = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>), <span class="kw">line_plot</span> = <span class="fl">FALSE</span>) {
-  <span class="co">if</span>(<span class="kw">line_plot</span>) {
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>() <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(
-        panel.grid.major = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span>(size = <span class="fl">0.5</span>, linetype = <span class="st">'solid'</span>, colour = <span class="st">"black"</span>),
-        panel.grid.minor = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        axis.text.y = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(size = <span class="fl">8</span>),
-        panel.background = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        panel.border = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        plot.background = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        plot.margin = <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span>(<span class="kw">margins</span>, <span class="st">"cm"</span>),
-        axis.title.y = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        strip.background = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(fill = <span class="kw">strip_background</span>),
-        strip.text = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(size = <span class="fl">15</span>, colour = <span class="st">"white"</span>),
-        legend.position = <span class="st">"none"</span>
-      )
-  } <span class="co">else</span> {
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>() <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(
-        panel.background = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        panel.border = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        panel.grid = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        plot.background = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        plot.margin = <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span>(<span class="kw">margins</span>, <span class="st">"cm"</span>),
-        axis.title = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        axis.text = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        axis.ticks = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-        strip.background = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(fill = <span class="kw">strip_background</span>),
-        strip.text = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(size = <span class="fl">15</span>, colour = <span class="st">"white"</span>),
-        legend.position = <span class="st">"none"</span>
-      )
-  }
-}
-</pre></div>
+<span class="va">theme_gofer</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">strip_background</span> <span class="op">=</span> <span class="st">"#1f58b5"</span>, <span class="va">margins</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, <span class="va">line_plot</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">line_plot</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+        panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span>, linetype <span class="op">=</span> <span class="st">'solid'</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>,
+        panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,
+        panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        plot.margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="va">margins</span>, <span class="st">"cm"</span><span class="op">)</span>,
+        axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">strip_background</span><span class="op">)</span>,
+        strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">15</span>, colour <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,
+        legend.position <span class="op">=</span> <span class="st">"none"</span>
+      <span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+        panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        plot.margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="va">margins</span>, <span class="st">"cm"</span><span class="op">)</span>,
+        axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">strip_background</span><span class="op">)</span>,
+        strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">15</span>, colour <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,
+        legend.position <span class="op">=</span> <span class="st">"none"</span>
+      <span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span></pre></div>
 </div>
 <div id="build-the-lines-to-separate-the-studies---the-basic-grid-plot" class="section level3">
 <h3 class="hasAnchor">
 <a href="#build-the-lines-to-separate-the-studies---the-basic-grid-plot" class="anchor"></a>2) Build the lines to separate the studies - the basic grid plot</h3>
 <p>For the plot, the first step is to build the basic grid, which is the lines that will separate each study.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">p_grid</span> <span class="op">&lt;-</span> <span class="kw">data_gofer</span> <span class="op">%&gt;%</span> 
+<span class="va">p_grid</span> <span class="op">&lt;-</span> <span class="va">data_gofer</span> <span class="op">%&gt;%</span> 
   <span class="co"># this is a hack to show a white space between the facet and the plot</span>
   <span class="co"># this is needed to be able to have subheadings</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span>(study = <span class="fl">NA</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span><span class="op">(</span>study <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## here although we do not plot the study labels yet, this is needed to ensure</span>
   <span class="co">## that plots will be aligned across panels since they always share the same x-axis (study)</span>
-  <span class="kw">ggfittext</span>::<span class="fu"><a href="https://rdrr.io/pkg/ggfittext/man/geom_fit_text.html">geom_fit_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="fl">0</span>, label = <span class="st">""</span>),
-                           place = <span class="st">"left"</span>,
-                           reflow = <span class="fl">TRUE</span>,
-                           fontface = <span class="st">"plain"</span>,
-                           position = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge</a></span>(width = <span class="fl">0.7</span>),
-                           show.legend = <span class="fl">FALSE</span>,
-                           na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(xintercept = <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1</span>, <span class="kw">n_lines</span>, <span class="fl">1</span>)  <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>()
+  <span class="fu">ggfittext</span><span class="fu">::</span><span class="fu"><a href="https://wilkox.org/ggfittext/reference/geom_fit_text.html">geom_fit_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="fl">0</span>, label <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,
+                           place <span class="op">=</span> <span class="st">"left"</span>,
+                           reflow <span class="op">=</span> <span class="cn">TRUE</span>,
+                           fontface <span class="op">=</span> <span class="st">"plain"</span>,
+                           position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span>,
+                           show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                           na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n_lines</span>, <span class="fl">1</span><span class="op">)</span>  <span class="op">-</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="kw">p_grid</span>
-</pre></div>
+<span class="va">p_grid</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-6-1.png" width="2400" style="display: block; margin: auto;"></p>
 </div>
 <div id="study-panel" class="section level3">
@@ -283,23 +279,22 @@ You can of course read the source code to check how it is done, but I am going t
 <a href="#study-panel" class="anchor"></a>3) Study panel</h3>
 <p>Here is when the studies (Author and Year) are plotted. Also, the colorful headers at the top will be created with <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">ggplot2::facet_wrap()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">p_studies</span> <span class="op">&lt;-</span> <span class="kw">data_gofer</span> <span class="op">%&gt;%</span>
+<span class="va">p_studies</span> <span class="op">&lt;-</span> <span class="va">data_gofer</span> <span class="op">%&gt;%</span>
   <span class="co"># this is a hack to show a white space between the facet and the plot</span>
   <span class="co"># this is needed to be able to have subheadings</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span>(study = <span class="fl">NA</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span>
-  <span class="kw">ggfittext</span>::<span class="fu"><a href="https://rdrr.io/pkg/ggfittext/man/geom_fit_text.html">geom_fit_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="fl">0</span>, label = <span class="kw">study</span>),
-                           place = <span class="st">"centre"</span>,
-                           reflow = <span class="fl">TRUE</span>,
-                           fontface = <span class="st">"plain"</span>,
-                           show.legend = <span class="fl">FALSE</span>,
-                           na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span> <span class="st">"Study"</span>) <span class="op">+</span>
-  <span class="fu">theme_gofer</span>()
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span><span class="op">(</span>study <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggfittext</span><span class="fu">::</span><span class="fu"><a href="https://wilkox.org/ggfittext/reference/geom_fit_text.html">geom_fit_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="fl">0</span>, label <span class="op">=</span> <span class="va">study</span><span class="op">)</span>,
+                           place <span class="op">=</span> <span class="st">"centre"</span>,
+                           reflow <span class="op">=</span> <span class="cn">TRUE</span>,
+                           fontface <span class="op">=</span> <span class="st">"plain"</span>,
+                           show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                           na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="st">"Study"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_gofer</span><span class="op">(</span><span class="op">)</span>
 
-<span class="kw">p_studies</span>
-</pre></div>
+<span class="va">p_studies</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-7-1.png" width="2400" style="display: block; margin: auto;"></p>
 <div class="rmdwarning">
 <p>
@@ -307,15 +302,14 @@ You can of course read the source code to check how it is done, but I am going t
 </p>
 </div>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">2</span>), <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">1</span>) <span class="co"># p_studies</span>
-)
+<span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># p_studies</span>
+<span class="op">)</span>
 
-<span class="kw">p_grid</span> <span class="op">+</span>
-  <span class="kw">p_studies</span> <span class="op">+</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span>(nrow = <span class="fl">1</span>, design = <span class="kw">layout</span>)
-</pre></div>
+<span class="va">p_grid</span> <span class="op">+</span>
+  <span class="va">p_studies</span> <span class="op">+</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, design <span class="op">=</span> <span class="va">layout</span><span class="op">)</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-9-1.png" width="2400" style="display: block; margin: auto;"></p>
 </div>
 <div id="sample-panel" class="section level3">
@@ -328,28 +322,28 @@ You can of course read the source code to check how it is done, but I am going t
 <p>Here some data preparation is needed to define color of labels and y-axis placement.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="co">## data preparation</span>
-<span class="kw">data_sample</span> <span class="op">&lt;-</span> <span class="kw">data_gofer</span> <span class="op">%&gt;%</span>
-  <span class="kw">tidyr</span>::<span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest_legacy.html">unnest_legacy</a></span>() <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">study</span>, <span class="kw">dplyr</span>::<span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span>(<span class="st">"sample"</span>)) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(sample_men_ratio = <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="kw">sample_men_ratio</span>, digits = <span class="fl">1</span>),
-                fill = <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span>(
-                  <span class="kw">sample_men_ratio</span> <span class="op">&gt;</span> <span class="fl">0.5</span> <span class="op">~</span> <span class="st">"#355c7d"</span>,
-                  <span class="kw">sample_men_ratio</span> <span class="op">==</span> <span class="fl">0.5</span> <span class="op">~</span> <span class="st">"#c06c84"</span>,
-                  <span class="kw">sample_men_ratio</span> <span class="op">&lt;</span> <span class="fl">0.5</span> <span class="op">~</span> <span class="st">"#f67280"</span>
-                ),
-                sample_men_ratio = <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="kw">sample_men_ratio</span>, fmt = <span class="st">'%#.1f'</span>)) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct_all.html">distinct_all</a></span>() <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">study</span>)) <span class="op">%&gt;%</span>
+<span class="va">data_sample</span> <span class="op">&lt;-</span> <span class="va">data_gofer</span> <span class="op">%&gt;%</span>
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest_legacy.html">unnest_legacy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">study</span>, <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"sample"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sample_men_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">sample_men_ratio</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+                fill <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+                  <span class="va">sample_men_ratio</span> <span class="op">&gt;</span> <span class="fl">0.5</span> <span class="op">~</span> <span class="st">"#355c7d"</span>,
+                  <span class="va">sample_men_ratio</span> <span class="op">==</span> <span class="fl">0.5</span> <span class="op">~</span> <span class="st">"#c06c84"</span>,
+                  <span class="va">sample_men_ratio</span> <span class="op">&lt;</span> <span class="fl">0.5</span> <span class="op">~</span> <span class="st">"#f67280"</span>
+                <span class="op">)</span>,
+                sample_men_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="va">sample_men_ratio</span>, fmt <span class="op">=</span> <span class="st">'%#.1f'</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct_all.html">distinct_all</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">study</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># this is a hack to show a white space between the facet and the plot</span>
   <span class="co"># this is needed to be able to have subheadings</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span>(study = <span class="fl">NA</span>) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-    dummy_population = <span class="fl">0.5</span>,
-    dummy_fitness = <span class="fl">2</span>,
-    dummy_men_ratio = <span class="fl">3.5</span>
-  )
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span><span class="op">(</span>study <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    dummy_population <span class="op">=</span> <span class="fl">0.5</span>,
+    dummy_fitness <span class="op">=</span> <span class="fl">2</span>,
+    dummy_men_ratio <span class="op">=</span> <span class="fl">3.5</span>
+  <span class="op">)</span>
 
-<span class="kw">data_sample</span>
+<span class="va">data_sample</span>
 <span class="co">#&gt; # A tibble: 13 x 8</span>
 <span class="co">#&gt;    study sample_populati… sample_fitness sample_men_ratio fill  dummy_population</span>
 <span class="co">#&gt;    &lt;fct&gt; &lt;chr&gt;            &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;            &lt;dbl&gt;</span>
@@ -366,57 +360,55 @@ You can of course read the source code to check how it is done, but I am going t
 <span class="co">#&gt; 11 Earn… "Overweight\nOb… Sedentary      1.0              #355…              0.5</span>
 <span class="co">#&gt; 12 Eguc… "Healthy"        Sedentary      1.0              #355…              0.5</span>
 <span class="co">#&gt; 13 &lt;NA&gt;   &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;               0.5</span>
-<span class="co">#&gt; # … with 2 more variables: dummy_fitness &lt;dbl&gt;, dummy_men_ratio &lt;dbl&gt;</span>
-</pre></div>
+<span class="co">#&gt; # … with 2 more variables: dummy_fitness &lt;dbl&gt;, dummy_men_ratio &lt;dbl&gt;</span></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">p_sample</span> <span class="op">&lt;-</span> <span class="kw">data_sample</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span>
+<span class="va">p_sample</span> <span class="op">&lt;-</span> <span class="va">data_sample</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## Population</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="kw">dummy_population</span>, label = <span class="kw">sample_population</span>),
-                     fontface = <span class="st">"plain"</span>,
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="va">dummy_population</span>, label <span class="op">=</span> <span class="va">sample_population</span><span class="op">)</span>,
+                     fontface <span class="op">=</span> <span class="st">"plain"</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## Population subheading</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="fl">NA</span>, y = <span class="kw">dummy_population</span>),
-                     label = <span class="st">"Population"</span>,
-                     size = <span class="fl">5</span>,
-                     fontface = <span class="st">"bold"</span>,
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NA</span>, y <span class="op">=</span> <span class="va">dummy_population</span><span class="op">)</span>,
+                     label <span class="op">=</span> <span class="st">"Population"</span>,
+                     size <span class="op">=</span> <span class="fl">5</span>,
+                     fontface <span class="op">=</span> <span class="st">"bold"</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## Fitness</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="kw">dummy_fitness</span>, label = <span class="kw">sample_fitness</span>),
-                     fontface = <span class="st">"plain"</span>,
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="va">dummy_fitness</span>, label <span class="op">=</span> <span class="va">sample_fitness</span><span class="op">)</span>,
+                     fontface <span class="op">=</span> <span class="st">"plain"</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## Fitness subheading</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="fl">NA</span>, y = <span class="kw">dummy_fitness</span>),
-                     label = <span class="st">"Fitness"</span>,
-                     size = <span class="fl">5</span>,
-                     fontface = <span class="st">"bold"</span>,
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NA</span>, y <span class="op">=</span> <span class="va">dummy_fitness</span><span class="op">)</span>,
+                     label <span class="op">=</span> <span class="st">"Fitness"</span>,
+                     size <span class="op">=</span> <span class="fl">5</span>,
+                     fontface <span class="op">=</span> <span class="st">"bold"</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## Men Ratio</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="kw">dummy_men_ratio</span>, label = <span class="kw">sample_men_ratio</span>, fill = <span class="kw">fill</span>),
-                      colour = <span class="st">"white"</span>,
-                      size = <span class="fl">4</span>,
-                      fontface = <span class="st">"bold"</span>,
-                      na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="va">dummy_men_ratio</span>, label <span class="op">=</span> <span class="va">sample_men_ratio</span>, fill <span class="op">=</span> <span class="va">fill</span><span class="op">)</span>,
+                      colour <span class="op">=</span> <span class="st">"white"</span>,
+                      size <span class="op">=</span> <span class="fl">4</span>,
+                      fontface <span class="op">=</span> <span class="st">"bold"</span>,
+                      na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## Men Ratio subheading</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="fl">NA</span>, y = <span class="kw">dummy_men_ratio</span>),
-                     label = <span class="st">"Men\nratio"</span>,
-                     size = <span class="fl">5</span>,
-                     fontface = <span class="st">"bold"</span>,
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity</a></span>() <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NA</span>, y <span class="op">=</span> <span class="va">dummy_men_ratio</span><span class="op">)</span>,
+                     label <span class="op">=</span> <span class="st">"Men\nratio"</span>,
+                     size <span class="op">=</span> <span class="fl">5</span>,
+                     fontface <span class="op">=</span> <span class="st">"bold"</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## the following will ensure that there is some extra space at the beginning and at the end</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span>(<span class="fl">0</span>, <span class="fl">4</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span> <span class="st">"Sample"</span>) <span class="op">+</span>
-  <span class="fu">theme_gofer</span>()
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="st">"Sample"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_gofer</span><span class="op">(</span><span class="op">)</span>
 
-<span class="kw">p_sample</span>
-</pre></div>
+<span class="va">p_sample</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-11-1.png" width="2400" style="display: block; margin: auto;"></p>
 <div class="rmdwarning">
 <p>
@@ -424,17 +416,16 @@ You can of course read the source code to check how it is done, but I am going t
 </p>
 </div>
 <div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">3</span>), <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">1</span>), <span class="co"># p_studies</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">2</span>, b = <span class="fl">3</span>, r = <span class="fl">3</span>)  <span class="co"># p_sample</span>
-)
+<span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, <span class="co"># p_studies</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">2</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>  <span class="co"># p_sample</span>
+<span class="op">)</span>
 
-<span class="kw">p_grid</span> <span class="op">+</span>
-  <span class="kw">p_studies</span> <span class="op">+</span>
-  <span class="kw">p_sample</span> <span class="op">+</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span>(nrow = <span class="fl">1</span>, design = <span class="kw">layout</span>)
-</pre></div>
+<span class="va">p_grid</span> <span class="op">+</span>
+  <span class="va">p_studies</span> <span class="op">+</span>
+  <span class="va">p_sample</span> <span class="op">+</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, design <span class="op">=</span> <span class="va">layout</span><span class="op">)</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-13-1.png" width="2400" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -444,19 +435,19 @@ You can of course read the source code to check how it is done, but I am going t
 <p>Here we plot information on whether participants in the studies were <strong>smokers</strong> and were taking <strong>medicines to control blood pressure</strong>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="co">## data preparation</span>
-<span class="kw">data_anamnese</span> <span class="op">&lt;-</span> <span class="kw">data_gofer</span> <span class="op">%&gt;%</span>
-  <span class="kw">tidyr</span>::<span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest_legacy.html">unnest_legacy</a></span>() <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">study</span>, <span class="kw">dplyr</span>::<span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span>(<span class="st">"anamnese"</span>)) <span class="op">%&gt;%</span>
+<span class="va">data_anamnese</span> <span class="op">&lt;-</span> <span class="va">data_gofer</span> <span class="op">%&gt;%</span>
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest_legacy.html">unnest_legacy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">study</span>, <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"anamnese"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># this is a hack to show a white space between the facet and the plot</span>
   <span class="co"># this is needed to be able to have subheadings</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span>(study = <span class="fl">NA</span>) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-    dummy_smoker = <span class="fl">1</span>,
-    dummy_medicines = <span class="fl">2</span>
-  ) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct_all.html">distinct_all</a></span>()
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span><span class="op">(</span>study <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    dummy_smoker <span class="op">=</span> <span class="fl">1</span>,
+    dummy_medicines <span class="op">=</span> <span class="fl">2</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct_all.html">distinct_all</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="kw">data_anamnese</span>
+<span class="va">data_anamnese</span>
 <span class="co">#&gt; # A tibble: 11 x 5</span>
 <span class="co">#&gt;    study      anamnese_smoker anamnese_medicines_t… dummy_smoker dummy_medicines</span>
 <span class="co">#&gt;    &lt;fct&gt;      &lt;chr&gt;           &lt;chr&gt;                        &lt;dbl&gt;           &lt;dbl&gt;</span>
@@ -470,40 +461,38 @@ You can of course read the source code to check how it is done, but I am going t
 <span class="co">#&gt;  8 Beetham 2… N/R             Y                                1               2</span>
 <span class="co">#&gt;  9 Bækkerud … N/R             N/R                              1               2</span>
 <span class="co">#&gt; 10 Abdelbass… N               N/R                              1               2</span>
-<span class="co">#&gt; 11 &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;                             1               2</span>
-</pre></div>
+<span class="co">#&gt; 11 &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;                             1               2</span></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="kw">p_anamnese</span> <span class="op">&lt;-</span> <span class="kw">data_anamnese</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="kw">dummy_smoker</span>, label = <span class="kw">anamnese_smoker</span>),
-                     fontface = <span class="st">"plain"</span>,
-                     position = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge2</a></span>(width = <span class="fl">1</span>),
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="fl">NA</span>, y = <span class="kw">dummy_smoker</span>),
-                     label = <span class="st">"Smoker"</span>,
-                     size = <span class="fl">5</span>,
-                     fontface = <span class="st">"bold"</span>,
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="kw">dummy_medicines</span>, label = <span class="kw">anamnese_medicines_to_control_BP</span>),
-                     fontface = <span class="st">"plain"</span>,
-                     position = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge2</a></span>(width = <span class="fl">1</span>),
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="fl">NA</span>, y = <span class="kw">dummy_medicines</span>),
-                     label = <span class="st">"Medicines to\ncontrol BP"</span>,
-                     size = <span class="fl">5</span>,
-                     fontface = <span class="st">"bold"</span>,
-                     show.legend = <span class="fl">FALSE</span>,
-                     na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span>(<span class="fl">0.5</span>, <span class="fl">2.5</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span> <span class="st">"Anamnese"</span>) <span class="op">+</span>
-  <span class="fu">theme_gofer</span>()
+<span class="va">p_anamnese</span> <span class="op">&lt;-</span> <span class="va">data_anamnese</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="va">dummy_smoker</span>, label <span class="op">=</span> <span class="va">anamnese_smoker</span><span class="op">)</span>,
+                     fontface <span class="op">=</span> <span class="st">"plain"</span>,
+                     position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge2</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NA</span>, y <span class="op">=</span> <span class="va">dummy_smoker</span><span class="op">)</span>,
+                     label <span class="op">=</span> <span class="st">"Smoker"</span>,
+                     size <span class="op">=</span> <span class="fl">5</span>,
+                     fontface <span class="op">=</span> <span class="st">"bold"</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="va">dummy_medicines</span>, label <span class="op">=</span> <span class="va">anamnese_medicines_to_control_BP</span><span class="op">)</span>,
+                     fontface <span class="op">=</span> <span class="st">"plain"</span>,
+                     position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge2</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NA</span>, y <span class="op">=</span> <span class="va">dummy_medicines</span><span class="op">)</span>,
+                     label <span class="op">=</span> <span class="st">"Medicines to\ncontrol BP"</span>,
+                     size <span class="op">=</span> <span class="fl">5</span>,
+                     fontface <span class="op">=</span> <span class="st">"bold"</span>,
+                     show.legend <span class="op">=</span> <span class="cn">FALSE</span>,
+                     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="st">"Anamnese"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_gofer</span><span class="op">(</span><span class="op">)</span>
 
-<span class="kw">p_anamnese</span>
-</pre></div>
+<span class="va">p_anamnese</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-15-1.png" width="2400" style="display: block; margin: auto;"></p>
 <div class="rmdwarning">
 <p>
@@ -511,19 +500,18 @@ You can of course read the source code to check how it is done, but I am going t
 </p>
 </div>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">5</span>), <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">1</span>), <span class="co"># p_studies</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">2</span>, b = <span class="fl">3</span>, r = <span class="fl">3</span>),  <span class="co"># p_sample</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">4</span>, b = <span class="fl">3</span>, r = <span class="fl">5</span>) <span class="co"># p_anamnese</span>
-)
+<span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, <span class="co"># p_studies</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">2</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,  <span class="co"># p_sample</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">4</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># p_anamnese</span>
+<span class="op">)</span>
 
-<span class="kw">p_grid</span> <span class="op">+</span>
-  <span class="kw">p_studies</span> <span class="op">+</span>
-  <span class="kw">p_sample</span> <span class="op">+</span>
-  <span class="kw">p_anamnese</span> <span class="op">+</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span>(nrow = <span class="fl">1</span>, design = <span class="kw">layout</span>)
-</pre></div>
+<span class="va">p_grid</span> <span class="op">+</span>
+  <span class="va">p_studies</span> <span class="op">+</span>
+  <span class="va">p_sample</span> <span class="op">+</span>
+  <span class="va">p_anamnese</span> <span class="op">+</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, design <span class="op">=</span> <span class="va">layout</span><span class="op">)</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-17-1.png" width="3000" style="display: block; margin: auto;"></p>
 <p>In panels like <strong>Anamnese</strong> you might also want to display a <strong>legend</strong> for acronyms used. You may want to explicitly tell the reader that:</p>
 <div class="rmdinfo">
@@ -543,39 +531,36 @@ Y = Yes <br> N = No <br> N/R = Not Reported
 <a href="#creating-the-helper-plot" class="anchor"></a>5.1) Creating the helper plot</h3>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="co">## create some data</span>
-<span class="kw">data_caption_label</span> <span class="op">&lt;-</span> <span class="kw">dplyr</span>::<span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(
-  x = <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,
-  y = <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,
-  caption_label = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Y = yes"</span>, <span class="st">"N = no"</span>, <span class="st">"N/R = not reported"</span>)
-) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(caption_label = <span class="kw">forcats</span>::<span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span>(<span class="kw">caption_label</span>))
-</pre></div>
+<span class="va">data_caption_label</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+  x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,
+  y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,
+  caption_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Y = yes"</span>, <span class="st">"N = no"</span>, <span class="st">"N/R = not reported"</span><span class="op">)</span>
+<span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>caption_label <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">caption_label</span><span class="op">)</span><span class="op">)</span></pre></div>
 <div id="basic-plot" class="section level4">
 <h4 class="hasAnchor">
 <a href="#basic-plot" class="anchor"></a>Basic plot</h4>
 <div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="kw">data_caption_label</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">x</span>, y = <span class="kw">y</span>, shape = <span class="kw">caption_label</span>))
-</pre></div>
+<span class="va">data_caption_label</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, shape <span class="op">=</span> <span class="va">caption_label</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-20-1.png" width="2400" style="display: block; margin: auto;"></p>
 </div>
 <div id="final-plot" class="section level4">
 <h4 class="hasAnchor">
 <a href="#final-plot" class="anchor"></a>Final plot</h4>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="kw">p_caption</span> <span class="op">&lt;-</span> <span class="kw">data_caption_label</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">x</span>, y = <span class="kw">y</span>, shape = <span class="kw">caption_label</span>)) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(xmin = <span class="op">-</span><span class="fl">Inf</span>, xmax = <span class="fl">Inf</span>, ymin = <span class="op">-</span><span class="fl">Inf</span>, ymax = <span class="fl">Inf</span>), fill = <span class="st">"white"</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(shape = <span class="st">"Note:"</span>)<span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(legend.position = <span class="st">"bottom"</span>,
-                 legend.direction = <span class="st">"vertical"</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span>(shape = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span>(override.aes = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(shape=<span class="st">''</span>)))
+<span class="va">p_caption</span> <span class="op">&lt;-</span> <span class="va">data_caption_label</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, shape <span class="op">=</span> <span class="va">caption_label</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, xmax <span class="op">=</span> <span class="cn">Inf</span>, ymin <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, ymax <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"Note:"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span>,
+                 legend.direction <span class="op">=</span> <span class="st">"vertical"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>shape<span class="op">=</span><span class="st">''</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
-<span class="kw">p_caption</span>
-</pre></div>
+<span class="va">p_caption</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-21-1.png" width="2400" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -584,22 +569,21 @@ Y = Yes <br> N = No <br> N/R = Not Reported
 <a href="#combine-it-with-patchwork" class="anchor"></a>5.2) Combine it with <code>patchwork</code>
 </h3>
 <div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="kw">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">4</span>, b = <span class="fl">3</span>, r = <span class="fl">5</span>), <span class="co"># p_caption (here you choose where to place the legend, since it is under anamnese in this example, we use `l = 4` and `r = 5`)</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">5</span>), <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">1</span>), <span class="co"># p_studies</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">2</span>, b = <span class="fl">3</span>, r = <span class="fl">3</span>),  <span class="co"># p_sample</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">4</span>, b = <span class="fl">3</span>, r = <span class="fl">5</span>) <span class="co"># p_anamnese</span>
-)
+<span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">4</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="co"># p_caption (here you choose where to place the legend, since it is under anamnese in this example, we use `l = 4` and `r = 5`)</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, <span class="co"># p_studies</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">2</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,  <span class="co"># p_sample</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">4</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># p_anamnese</span>
+<span class="op">)</span>
 
 <span class="co">## now plot `p_caption` first</span>
-<span class="kw">p_caption</span> <span class="op">+</span>
-  <span class="kw">p_grid</span> <span class="op">+</span>
-  <span class="kw">p_studies</span> <span class="op">+</span>
-  <span class="kw">p_sample</span> <span class="op">+</span>
-  <span class="kw">p_anamnese</span> <span class="op">+</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span>(nrow = <span class="fl">1</span>, design = <span class="kw">layout</span>, guides = <span class="st">"keep"</span>)
-</pre></div>
+<span class="va">p_caption</span> <span class="op">+</span>
+  <span class="va">p_grid</span> <span class="op">+</span>
+  <span class="va">p_studies</span> <span class="op">+</span>
+  <span class="va">p_sample</span> <span class="op">+</span>
+  <span class="va">p_anamnese</span> <span class="op">+</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, design <span class="op">=</span> <span class="va">layout</span>, guides <span class="op">=</span> <span class="st">"keep"</span><span class="op">)</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-22-1.png" width="3000" style="display: block; margin: auto;"></p>
 </div>
 <div id="age-panel" class="section level3">
@@ -608,16 +592,16 @@ Y = Yes <br> N = No <br> N/R = Not Reported
 <p>Here we plot the median from the reported <strong>age</strong> of the groups in each study.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="co">## data preparation</span>
-<span class="kw">data_age</span> <span class="op">&lt;-</span> <span class="kw">data_gofer</span> <span class="op">%&gt;%</span>
-  <span class="kw">tidyr</span>::<span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest_legacy.html">unnest_legacy</a></span>() <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">study</span>, <span class="kw">groups</span>, <span class="kw">age</span>) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">study</span>) <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(age_median = <span class="kw">stats</span>::<span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(<span class="kw">age</span>)) <span class="op">%&gt;%</span>
+<span class="va">data_age</span> <span class="op">&lt;-</span> <span class="va">data_gofer</span> <span class="op">%&gt;%</span>
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest_legacy.html">unnest_legacy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">study</span>, <span class="va">groups</span>, <span class="va">age</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">study</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>age_median <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># this is a hack to show a white space between the facet and the plot</span>
   <span class="co"># this is needed to be able to have subheadings</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span>(study = <span class="fl">NA</span>)
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/add_row.html">add_row</a></span><span class="op">(</span>study <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
 
-<span class="kw">data_age</span>
+<span class="va">data_age</span>
 <span class="co">#&gt; # A tibble: 11 x 2</span>
 <span class="co">#&gt;    study            age_median</span>
 <span class="co">#&gt;    &lt;fct&gt;                 &lt;dbl&gt;</span>
@@ -631,26 +615,24 @@ Y = Yes <br> N = No <br> N/R = Not Reported
 <span class="co">#&gt;  8 Beetham 2019           61.8</span>
 <span class="co">#&gt;  9 Bækkerud 2016          40  </span>
 <span class="co">#&gt; 10 Abdelbasset 2020       54.6</span>
-<span class="co">#&gt; 11 &lt;NA&gt;                   NA</span>
-</pre></div>
+<span class="co">#&gt; 11 &lt;NA&gt;                   NA</span></pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="kw">p_age</span> <span class="op">&lt;-</span> <span class="kw">data_age</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="kw">age_median</span>, colour = <span class="kw">age_median</span>, label = <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(<span class="kw">age_median</span>))) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">study</span>, y = <span class="fl">0</span>, xend = <span class="kw">study</span>, yend = <span class="kw">age_median</span>), colour = <span class="st">"black"</span>, na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(size = <span class="fl">9</span>, na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(color = <span class="st">"white"</span>, size = <span class="fl">4</span>, fontface = <span class="st">"bold"</span>, na.rm = <span class="fl">TRUE</span>) <span class="op">+</span>
+<span class="va">p_age</span> <span class="op">&lt;-</span> <span class="va">data_age</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="va">age_median</span>, colour <span class="op">=</span> <span class="va">age_median</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">age_median</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">study</span>, y <span class="op">=</span> <span class="fl">0</span>, xend <span class="op">=</span> <span class="va">study</span>, yend <span class="op">=</span> <span class="va">age_median</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"black"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">9</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">4</span>, fontface <span class="op">=</span> <span class="st">"bold"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
   <span class="co">## Hack to delete lines above</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(xmin = <span class="kw">n_lines</span> <span class="op">-</span> <span class="fl">0.45</span>, xmax = <span class="fl">Inf</span>, ymin = <span class="op">-</span><span class="fl">Inf</span>, ymax = <span class="fl">Inf</span>), fill = <span class="st">"white"</span>, colour = <span class="st">"white"</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_color_gradient</a></span>(low = <span class="st">"#3a6e7f"</span>, high = <span class="st">"#38c2a4"</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span>(breaks = <span class="kw">NULL</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span>(<span class="fl">0</span>, <span class="fl">70</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(y = <span class="st">"Age (yr)"</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span> <span class="st">"Age"</span>) <span class="op">+</span>
-  <span class="fu">theme_gofer</span>(strip_background = <span class="st">"#ff6581"</span>, margins = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.1</span>), line_plot = <span class="fl">TRUE</span>)
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">n_lines</span> <span class="op">-</span> <span class="fl">0.45</span>, xmax <span class="op">=</span> <span class="cn">Inf</span>, ymin <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, ymax <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"white"</span>, colour <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_color_gradient</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"#3a6e7f"</span>, high <span class="op">=</span> <span class="st">"#38c2a4"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">70</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Age (yr)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="st">"Age"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_gofer</span><span class="op">(</span>strip_background <span class="op">=</span> <span class="st">"#ff6581"</span>, margins <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span>, line_plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="kw">p_age</span>
-</pre></div>
+<span class="va">p_age</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-24-1.png" width="2400" style="display: block; margin: auto;"></p>
 <div class="rmdwarning">
 <p>
@@ -658,23 +640,22 @@ Y = Yes <br> N = No <br> N/R = Not Reported
 </p>
 </div>
 <div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="kw">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">4</span>, b = <span class="fl">3</span>, r = <span class="fl">5</span>), <span class="co"># p_caption (here you choose where to place the legend, since it is under anamnese in this example, we use `l = 4` and `r = 5`)</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">6</span>), <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">1</span>, b = <span class="fl">3</span>, r = <span class="fl">1</span>), <span class="co"># p_studies</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">2</span>, b = <span class="fl">3</span>, r = <span class="fl">3</span>), <span class="co"># p_sample</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">4</span>, b = <span class="fl">3</span>, r = <span class="fl">5</span>), <span class="co"># p_anamnese</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span>(t = <span class="fl">1</span>, l = <span class="fl">6</span>, b = <span class="fl">3</span>, r = <span class="fl">6</span>)  <span class="co"># p _age</span>
-)
+<span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">4</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="co"># p_caption (here you choose where to place the legend, since it is under anamnese in this example, we use `l = 4` and `r = 5`)</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>, <span class="co"># p_grid (the `r` argument will be adjusted as we go.. it controls the width of the plot)</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, <span class="co"># p_studies</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">2</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="co"># p_sample</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">4</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="co"># p_anamnese</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/area.html">area</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">1</span>, l <span class="op">=</span> <span class="fl">6</span>, b <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>  <span class="co"># p _age</span>
+<span class="op">)</span>
 
-<span class="kw">p_caption</span> <span class="op">+</span>
-  <span class="kw">p_grid</span> <span class="op">+</span>
-  <span class="kw">p_studies</span> <span class="op">+</span>
-  <span class="kw">p_sample</span> <span class="op">+</span>
-  <span class="kw">p_anamnese</span> <span class="op">+</span>
-  <span class="kw">p_age</span> <span class="op">+</span>
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span>(nrow = <span class="fl">1</span>, design = <span class="kw">layout</span>, guides = <span class="st">"keep"</span>)
-</pre></div>
+<span class="va">p_caption</span> <span class="op">+</span>
+  <span class="va">p_grid</span> <span class="op">+</span>
+  <span class="va">p_studies</span> <span class="op">+</span>
+  <span class="va">p_sample</span> <span class="op">+</span>
+  <span class="va">p_anamnese</span> <span class="op">+</span>
+  <span class="va">p_age</span> <span class="op">+</span>
+  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, design <span class="op">=</span> <span class="va">layout</span>, guides <span class="op">=</span> <span class="st">"keep"</span><span class="op">)</span></pre></div>
 <p><img src="gofer_files/figure-html/unnamed-chunk-26-1.png" width="3000" style="display: block; margin: auto;"></p>
 <hr>
 </div>
@@ -702,7 +683,7 @@ Y = Yes <br> N = No <br> N/R = Not Reported
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

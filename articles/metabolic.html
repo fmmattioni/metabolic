@@ -158,10 +158,9 @@ PRE.fansi SPAN {padding-top: .25em; padding-bottom: .25em};
 <p>The <a href="../index.html">{metabolic}</a> package provides you all the tools necessary to reproduce the meta-analysis published in <a href="https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx">Medicine &amp; Science in Sports &amp; Exercise</a>.</p>
 <p>You can easily read the paper in the journal website through the function <code><a href="../reference/read_paper.html">metabolic::read_paper()</a></code>. It will take you to the online published paper in your default browser.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/read_paper.html">read_paper</a></span>()
-</pre></div>
+<span class="fu"><a href="../reference/read_paper.html">read_paper</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <div class="rmdinfo">
 <p>
 We also provide you all the data used to perform the <strong>meta-analysis</strong> and the <strong>GOfER</strong> (Graphical Overview for Evidence Reviews) diagram. In case you are not familiar with R, or just would like to download the data, you can do so in the <a href="metabolic_meta.html">metabolic_meta</a> and in the <a href="metabolic_gofer.html">metabolic_gofer</a> vignettes.
@@ -172,10 +171,9 @@ We also provide you all the data used to perform the <strong>meta-analysis</stro
 <a href="#produce-an-html-report-for-a-given-clinical-endpoint" class="anchor"></a>Produce an HTML report for a given clinical endpoint</h2>
 <p>The easiest way of reproducing the meta-analysis for a given clinical endpoint is using the <code><a href="../reference/build_report.html">metabolic::build_report()</a></code>function, which will build an <strong>HTML report</strong> with all the results, including <strong>R output</strong> and <strong>plots</strong>. Try it out! Make sure you also choose a path to save the report to!</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/build_report.html">build_report</a></span>(endpoint = <span class="st">"VO2max"</span>, path = <span class="st">"~/Documents/VO2max_report"</span>)
-</pre></div>
+<span class="fu"><a href="../reference/build_report.html">build_report</a></span><span class="op">(</span>endpoint <span class="op">=</span> <span class="st">"VO2max"</span>, path <span class="op">=</span> <span class="st">"~/Documents/VO2max_report"</span><span class="op">)</span></pre></div>
 <div class="rmdinfo">
 <p>
 In case you want to reproduce the analysis on your own, we provided you the necessary tools for that! Here we will walk you through all the functionalities. In this example, we will be reproducing a <strong>meta-analysis on VO2max</strong>.
@@ -186,10 +184,9 @@ In case you want to reproduce the analysis on your own, we provided you the nece
 <h2 class="hasAnchor">
 <a href="#perform-the-meta-analysis" class="anchor"></a>Perform the meta-analysis</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/fmmattioni/metabolic">metabolic</a></span><span class="op">)</span>
 
-<span class="kw">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/perform_meta.html">perform_meta</a></span>(endpoint = <span class="st">"VO2max"</span>)
-</pre></div>
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/perform_meta.html">perform_meta</a></span><span class="op">(</span>endpoint <span class="op">=</span> <span class="st">"VO2max"</span><span class="op">)</span></pre></div>
 <pre class="fansi fansi-message"><code>#&gt; ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── <span style="color: #BB0000;"> * VO2max meta-analysis * </span><span> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 </span></code></pre>
 <pre class="fansi fansi-message"><code>#&gt; <span style="color: #00BB00;">✔</span><span> </span><span style="color: #0000BB;">'Overall'</span><span>
@@ -218,8 +215,7 @@ In case you want to reproduce the analysis on your own, we provided you the nece
 </span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 
-<span class="kw">results</span>
-</pre></div>
+<span class="va">results</span></pre></div>
 <pre class="fansi fansi-output"><code>#&gt; <span style="color: #555555;"># A tibble: 8 x 4</span><span>
 #&gt;   subgroup          meta_analysis sensitivity_analysis meta_regression
 #&gt;   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>             </span><span style="color: #555555;font-style: italic;">&lt;named list&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;named list&gt;</span><span>         </span><span style="color: #555555;font-style: italic;">&lt;named list&gt;</span><span>   
@@ -240,8 +236,7 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 </p>
 </div>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="../reference/perform_meta.html">perform_meta</a></span>(endpoint = <span class="st">"HbA1c"</span>)
-</pre></div>
+<span class="fu"><a href="../reference/perform_meta.html">perform_meta</a></span><span class="op">(</span>endpoint <span class="op">=</span> <span class="st">"HbA1c"</span><span class="op">)</span></pre></div>
 <pre class="fansi fansi-message"><code>#&gt; ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── <span style="color: #BB0000;"> * HbA1c meta-analysis * </span><span> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 </span></code></pre>
 <pre class="fansi fansi-message"><code>#&gt; <span style="color: #00BB00;">✔</span><span> </span><span style="color: #0000BB;">'Overall'</span><span>
@@ -290,9 +285,8 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <a href="#small-study-effects" class="anchor"></a>Small-study effects</h2>
 <p>Small-study effects (the phenomenon which smaller studies present different - often larger - treatment effects than bigger sample studies) may be visualized through contour-enhanced funnel plots, as well as through radial plots.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_analysis</span><span class="op">$</span><span class="kw">Overall</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/plot_small_study_effects.html">plot_small_study_effects</a></span>()
-</pre></div>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_analysis</span><span class="op">$</span><span class="va">Overall</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/plot_small_study_effects.html">plot_small_study_effects</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="metabolic_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="sensitivity-analysis" class="section level2">
@@ -300,7 +294,7 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <a href="#sensitivity-analysis" class="anchor"></a>Sensitivity analysis</h2>
 <p>You may also access the results from the <strong>sensitivity analysis</strong> and produce a forest plot:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">sensitivity_analysis</span><span class="op">$</span><span class="kw">Overall</span>
+<span class="va">results</span><span class="op">$</span><span class="va">sensitivity_analysis</span><span class="op">$</span><span class="va">Overall</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Influential analysis (Random effects model)</span>
 <span class="co">#&gt; </span>
@@ -358,12 +352,10 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Details on meta-analytical method:</span>
 <span class="co">#&gt; - Inverse variance method</span>
-<span class="co">#&gt; - DerSimonian-Laird estimator for tau^2</span>
-</pre></div>
+<span class="co">#&gt; - DerSimonian-Laird estimator for tau^2</span></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">sensitivity_analysis</span><span class="op">$</span><span class="kw">Overall</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span>()
-</pre></div>
+<span class="va">results</span><span class="op">$</span><span class="va">sensitivity_analysis</span><span class="op">$</span><span class="va">Overall</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="metabolic_files/figure-html/unnamed-chunk-10-1.png" width="1152" style="display: block; margin: auto;"></p>
 </div>
 <div id="overall-meta-analysis" class="section level2">
@@ -371,7 +363,7 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <a href="#overall-meta-analysis" class="anchor"></a>Overall meta-analysis</h2>
 <p>The <strong>overall</strong> meta-analysis results can be easily accessed through <code>.$meta_analysis$Overall</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_analysis</span><span class="op">$</span><span class="kw">Overall</span>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_analysis</span><span class="op">$</span><span class="va">Overall</span>
 <span class="co">#&gt;                            SMD            95%-CI %W(fixed) %W(random)</span>
 <span class="co">#&gt; Bækkerud 2016           0.5820 [-0.3903; 1.5542]       1.4        1.8</span>
 <span class="co">#&gt; Beetham 2019           -0.6337 [-1.7518; 0.4845]       1.0        1.5</span>
@@ -440,13 +432,11 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <span class="co">#&gt; - Inverse variance method</span>
 <span class="co">#&gt; - DerSimonian-Laird estimator for tau^2</span>
 <span class="co">#&gt; - Jackson method for confidence interval of tau^2 and tau</span>
-<span class="co">#&gt; - Cohen's d (standardised mean difference)</span>
-</pre></div>
+<span class="co">#&gt; - Cohen's d (standardised mean difference)</span></pre></div>
 <p>And the forest plot is generated through the generic function <code><a href="../reference/plot_metabolic.html">metabolic::plot_metabolic()</a></code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_analysis</span><span class="op">$</span><span class="kw">Overall</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span>()
-</pre></div>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_analysis</span><span class="op">$</span><span class="va">Overall</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="metabolic_files/figure-html/unnamed-chunk-12-1.png" width="1152" style="display: block; margin: auto;"></p>
 </div>
 <div id="subgroups-meta-analysis" class="section level2">
@@ -457,9 +447,9 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <a href="#overview" class="anchor"></a>Overview</h3>
 <p>The <strong>overview</strong> of the subgroups meta-analysis results can be easily generated through the function <code><a href="../reference/perform_bind.html">metabolic::perform_bind()</a></code></p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="kw">results_bind</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/perform_bind.html">perform_bind</a></span>(<span class="kw">results</span><span class="op">$</span><span class="kw">meta_analysis</span>)
+<span class="va">results_bind</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/perform_bind.html">perform_bind</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">meta_analysis</span><span class="op">)</span>
 
-<span class="kw">results_bind</span>
+<span class="va">results_bind</span>
 <span class="co">#&gt;                           SMD            95%-CI     meta-analysis</span>
 <span class="co">#&gt;                        0.4017 [ 0.2381; 0.5653]           Overall</span>
 <span class="co">#&gt; Healthy                0.2461 [ 0.0354; 0.4568]        Population</span>
@@ -508,13 +498,11 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Details on meta-analytical method:</span>
 <span class="co">#&gt; - Inverse variance method</span>
-<span class="co">#&gt; - DerSimonian-Laird estimator for tau^2</span>
-</pre></div>
+<span class="co">#&gt; - DerSimonian-Laird estimator for tau^2</span></pre></div>
 <p>And the <strong>forest plot</strong> can be generated through the generic function <code><a href="../reference/plot_metabolic.html">metabolic::plot_metabolic()</a></code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw">results_bind</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span>()
-</pre></div>
+<span class="va">results_bind</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="metabolic_files/figure-html/unnamed-chunk-14-1.png" width="1152" style="display: block; margin: auto;"></p>
 </div>
 <div id="subgroups" class="section level3">
@@ -525,7 +513,7 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <h4 class="hasAnchor">
 <a href="#population" class="anchor"></a>Population</h4>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_analysis</span><span class="op">$</span><span class="kw">Population</span>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_analysis</span><span class="op">$</span><span class="va">Population</span>
 <span class="co">#&gt;                            SMD            95%-CI %W(fixed) %W(random)             population</span>
 <span class="co">#&gt; Bækkerud 2016           0.5820 [-0.3903; 1.5542]       1.4        1.8       Overweight/obese</span>
 <span class="co">#&gt; Beetham 2019           -0.6337 [-1.7518; 0.4845]       1.0        1.5       Overweight/obese</span>
@@ -622,15 +610,13 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <span class="co">#&gt; - Inverse variance method</span>
 <span class="co">#&gt; - DerSimonian-Laird estimator for tau^2</span>
 <span class="co">#&gt; - Jackson method for confidence interval of tau^2 and tau</span>
-<span class="co">#&gt; - Cohen's d (standardised mean difference)</span>
-</pre></div>
+<span class="co">#&gt; - Cohen's d (standardised mean difference)</span></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_analysis</span><span class="op">$</span><span class="kw">Population</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span>()
-</pre></div>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_analysis</span><span class="op">$</span><span class="va">Population</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="metabolic_files/figure-html/unnamed-chunk-16-1.png" width="1152" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_regression</span><span class="op">$</span><span class="kw">Population</span>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_regression</span><span class="op">$</span><span class="va">Population</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Mixed-Effects Model (k = 48; tau^2 estimator: DL)</span>
 <span class="co">#&gt; </span>
@@ -656,19 +642,17 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <span class="co">#&gt; .byvarT2D                       0.8365  0.3683   2.2713  0.0231   0.1147  1.5583  * </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-</pre></div>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_regression</span><span class="op">$</span><span class="kw">Population</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span>()
-</pre></div>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_regression</span><span class="op">$</span><span class="va">Population</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="metabolic_files/figure-html/unnamed-chunk-18-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 <div id="age" class="section level4">
 <h4 class="hasAnchor">
 <a href="#age" class="anchor"></a>Age</h4>
 <div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_analysis</span><span class="op">$</span><span class="kw">Age</span>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_analysis</span><span class="op">$</span><span class="va">Age</span>
 <span class="co">#&gt;                            SMD            95%-CI %W(fixed) %W(random) category_age</span>
 <span class="co">#&gt; Bækkerud 2016           0.5820 [-0.3903; 1.5542]       1.4        1.8    30 - 50 y</span>
 <span class="co">#&gt; Beetham 2019           -0.6337 [-1.7518; 0.4845]       1.0        1.5       &gt; 50 y</span>
@@ -761,15 +745,13 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <span class="co">#&gt; - Inverse variance method</span>
 <span class="co">#&gt; - DerSimonian-Laird estimator for tau^2</span>
 <span class="co">#&gt; - Jackson method for confidence interval of tau^2 and tau</span>
-<span class="co">#&gt; - Cohen's d (standardised mean difference)</span>
-</pre></div>
+<span class="co">#&gt; - Cohen's d (standardised mean difference)</span></pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_analysis</span><span class="op">$</span><span class="kw">Age</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span>()
-</pre></div>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_analysis</span><span class="op">$</span><span class="va">Age</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="metabolic_files/figure-html/unnamed-chunk-20-1.png" width="1152" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_regression</span><span class="op">$</span><span class="kw">Age</span>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_regression</span><span class="op">$</span><span class="va">Age</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Mixed-Effects Model (k = 48; tau^2 estimator: DL)</span>
 <span class="co">#&gt; </span>
@@ -792,12 +774,10 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 <span class="co">#&gt; age        0.0169  0.0052   3.2563  0.0011   0.0067  0.0271  ** </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-</pre></div>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit">
-<span class="kw">results</span><span class="op">$</span><span class="kw">meta_regression</span><span class="op">$</span><span class="kw">Age</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span>()
-</pre></div>
+<span class="va">results</span><span class="op">$</span><span class="va">meta_regression</span><span class="op">$</span><span class="va">Age</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/plot_metabolic.html">plot_metabolic</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="metabolic_files/figure-html/unnamed-chunk-22-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -819,7 +799,7 @@ As an example, here is the output from the <strong>HbA1c</strong> meta-analysis,
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
