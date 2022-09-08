@@ -6,12 +6,9 @@
 \alias{metabolic-package}
 \title{metabolic: Datasets and Functions for Reproducing Meta-Analyses}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Dataset and functions from the meta-analysis published in Medicine & Science in Sports & Exercise. 
-    It contains all the data and functions to reproduce the analysis.
-    "Effectiveness of HIIE versus MICT in Improving Cardiometabolic Risk Factors in Health and Disease: A Meta-analysis".
-    Felipe Mattioni Maturana, Peter Martus, Stephan Zipfel, Andreas M Nieß (2020) <doi:10.1249/MSS.0000000000002506>.
+Dataset and functions from the meta-analysis published in Medicine & Science in Sports & Exercise. It contains all the data and functions to reproduce the analysis. "Effectiveness of HIIE versus MICT in Improving Cardiometabolic Risk Factors in Health and Disease: A Meta-analysis". Felipe Mattioni Maturana, Peter Martus, Stephan Zipfel, Andreas M Nieß (2020) \doi{10.1249/MSS.0000000000002506}.
 }
 \seealso{
 Useful links:

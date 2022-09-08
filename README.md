@@ -45,19 +45,19 @@ remotes::install_github("fmmattioni/metabolic")
 
 ``` r
 metabolic::metabolic_meta
-#> # A tibble: 391 x 21
-#>    study endpoint population   age category_age duration category_durati…
-#>    <chr> <chr>    <fct>      <dbl> <fct>           <dbl> <fct>           
-#>  1 Abde… BMI      T2D         54.6 > 50 y              8 5 - 10 weeks    
-#>  2 Abde… HbA1c    T2D         54.6 > 50 y              8 5 - 10 weeks    
-#>  3 Abde… HDL      T2D         54.6 > 50 y              8 5 - 10 weeks    
-#>  4 Abde… HOMA-IR  T2D         54.6 > 50 y              8 5 - 10 weeks    
-#>  5 Abde… LDL      T2D         54.6 > 50 y              8 5 - 10 weeks    
-#>  6 Abde… Total C… T2D         54.6 > 50 y              8 5 - 10 weeks    
-#>  7 Abde… Triglyc… T2D         54.6 > 50 y              8 5 - 10 weeks    
-#>  8 Bækk… Body Ma… Overweigh…  40   30 - 50 y           6 5 - 10 weeks    
-#>  9 Bækk… Flow-me… Overweigh…  40   30 - 50 y           6 5 - 10 weeks    
-#> 10 Bækk… VO2max   Overweigh…  40   30 - 50 y           6 5 - 10 weeks    
+#> # A tibble: 391 × 21
+#>    study        endpoint population   age category_age duration category_durati…
+#>    <chr>        <chr>    <fct>      <dbl> <fct>           <dbl> <fct>           
+#>  1 Abdelbasset… BMI      T2D         54.6 > 50 y              8 5 - 10 weeks    
+#>  2 Abdelbasset… HbA1c    T2D         54.6 > 50 y              8 5 - 10 weeks    
+#>  3 Abdelbasset… HDL      T2D         54.6 > 50 y              8 5 - 10 weeks    
+#>  4 Abdelbasset… HOMA-IR  T2D         54.6 > 50 y              8 5 - 10 weeks    
+#>  5 Abdelbasset… LDL      T2D         54.6 > 50 y              8 5 - 10 weeks    
+#>  6 Abdelbasset… Total C… T2D         54.6 > 50 y              8 5 - 10 weeks    
+#>  7 Abdelbasset… Triglyc… T2D         54.6 > 50 y              8 5 - 10 weeks    
+#>  8 Bækkerud 20… Body Ma… Overweigh…  40   30 - 50 y           6 5 - 10 weeks    
+#>  9 Bækkerud 20… Flow-me… Overweigh…  40   30 - 50 y           6 5 - 10 weeks    
+#> 10 Bækkerud 20… VO2max   Overweigh…  40   30 - 50 y           6 5 - 10 weeks    
 #> # … with 381 more rows, and 14 more variables: men_ratio <dbl>,
 #> #   category_men_ratio <fct>, type_exercise <chr>, bsln <dbl>,
 #> #   bsln_adjusted <dbl>, category_bsln <fct>, N_HIIE <dbl>, Mean_HIIE <dbl>,
@@ -69,7 +69,7 @@ metabolic::metabolic_meta
 
 ``` r
 metabolic::metabolic_gofer
-#> # A tibble: 115 x 33
+#> # A tibble: 115 × 33
 #>    study groups sample_populati… sample_fitness sample_men_ratio anamnese_smoker
 #>    <chr> <chr>  <chr>            <chr>                     <dbl> <chr>          
 #>  1 Abde… HIIT   "T2D"            N/R                        0.63 N              
@@ -88,12 +88,7 @@ metabolic::metabolic_gofer
 #> #   design_training_duration <dbl>, design_training_frequency <chr>,
 #> #   design_exercise_intensity <chr>, hiie_n_reps <chr>,
 #> #   hiie_rep_duration <chr>, hiie_work_rest_ratio <chr>, compliance <dbl>,
-#> #   endpoints_vo2max <chr>, endpoints_fmd <chr>, endpoints_body_mass <chr>,
-#> #   endpoints_body_fat <chr>, endpoints_sbp <chr>, endpoints_dbp <chr>,
-#> #   endpoints_hdl <chr>, endpoints_ldl <chr>, endpoints_triglycerides <chr>,
-#> #   endpoints_total_cholesterol <chr>, endpoints_insulin <chr>,
-#> #   endpoints_glucose <chr>, endpoints_homa <chr>, endpoints_bmi <chr>,
-#> #   endpoints_crp <chr>, endpoints_hba1c <chr>
+#> #   endpoints_vo2max <chr>, endpoints_fmd <chr>, endpoints_body_mass <chr>, …
 ```
 
 ## Reproduce meta-analysis for each clinical endpoint
@@ -102,20 +97,27 @@ metabolic::metabolic_gofer
 library(metabolic)
 
 perform_meta(endpoint = "VO2max")
-#> ───────────────────────────────────────────────  * VO2max meta-analysis *  ──────────────────────────────────────────────
-#> ✓ 'Overall'
-#> ✓       └─ Performing meta-analysis
-#> ✓       └─ Performing sensitivity analysis
-#> ✓                └─ Meta-analysis results are robust! Keep going!
-#> ✓ Performing meta-analysis and meta-regression on the Population subgroup
-#> ✓ Performing meta-analysis and meta-regression on the Age subgroup
-#> ✓ Performing meta-analysis and meta-regression on the Training Duration subgroup
-#> ✓ Performing meta-analysis and meta-regression on the Men Ratio subgroup
-#> ✓ Performing meta-analysis and meta-regression on the Type of Exercise subgroup
-#> ✓ Performing meta-analysis and meta-regression on the Baseline subgroup
-#> ✓ Performing meta-analysis and meta-regression on the Type of HIIE subgroup
-#> ───────────────────────────────────────────────────────  * DONE *  ──────────────────────────────────────────────────────
-#> # A tibble: 8 x 4
+#> ──────────────────────────  * VO2max meta-analysis *  ──────────────────────────
+#> ✔ 'Overall'
+#> ✔       └─ Performing meta-analysis
+#> ✔       └─ Performing sensitivity analysis
+#> ✔                └─ Meta-analysis results are robust! Keep going!
+#> ✔ Performing meta-analysis and meta-regression on the Population subgroup
+#> 
+#> ✔ Performing meta-analysis and meta-regression on the Age subgroup
+#> 
+#> ✔ Performing meta-analysis and meta-regression on the Training Duration subgroup
+#> 
+#> ✔ Performing meta-analysis and meta-regression on the Men Ratio subgroup
+#> 
+#> ✔ Performing meta-analysis and meta-regression on the Type of Exercise subgroup
+#> 
+#> ✔ Performing meta-analysis and meta-regression on the Baseline subgroup
+#> 
+#> ✔ Performing meta-analysis and meta-regression on the Type of HIIE subgroup
+#> 
+#> ──────────────────────────────────  * DONE *  ──────────────────────────────────
+#> # A tibble: 8 × 4
 #>   subgroup          meta_analysis sensitivity_analysis meta_regression
 #>   <chr>             <named list>  <named list>         <named list>   
 #> 1 Overall           <metacont>    <metainf>            <lgl [1]>      
