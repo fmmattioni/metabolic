@@ -22,10 +22,12 @@ a plot.
 Plot small-study effects analysis
 }
 \examples{
-# Perform meta-analysis on VO2max
-results <- perform_meta(endpoint = "VO2max")
+\dontrun{
+  # Perform meta-analysis on VO2max
+  results <- perform_meta(endpoint = "VO2max")
 
-# Plot small-study effects results
-results$meta_analysis$Overall \%>\%
-   plot_small_study_effects()
+  # Plot small-study effects results
+  results$meta_analysis$Overall \%>\%
+     plot_small_study_effects()
+}
 }

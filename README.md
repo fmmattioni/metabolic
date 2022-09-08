@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/metabolic)](https://CRAN.R-project.org/package=metabolic)
 [![R build
@@ -20,7 +20,7 @@ badge](https://cranlogs.r-pkg.org/badges/grand-total/metabolic?color=blue)](http
 The goal of `metabolic` is to provide all the data and the tools
 necessary to reproduce the meta-analysis published in [Medicine &
 Science in Sports &
-Exercise](https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx).
+Exercise](https://journals.lww.com/acsm-msse/Fulltext/2021/03000/Effectiveness_of_HIIE_versus_MICT_in_Improving.12.aspx).
 
 ## Installation
 
