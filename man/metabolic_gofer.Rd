@@ -43,7 +43,7 @@ A data frame with 115 rows and 33 variables:
 }
 }
 \source{
-\url{https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx}
+\url{https://journals.lww.com/acsm-msse/Fulltext/2021/03000/Effectiveness_of_HIIE_versus_MICT_in_Improving.12.aspx}
 }
 \usage{
 metabolic_gofer

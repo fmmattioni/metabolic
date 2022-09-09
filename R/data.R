@@ -39,7 +39,7 @@
 #'   \item{endpoints_crp}{information on whether the reported p-value was singificant comparing the effects pre- and post-training on C-reactive Protein. If Yes, the reported p-value was less than 0.05; if No, the reported p-value was greater than 0.05}
 #'   \item{endpoints_hba1c}{information on whether the reported p-value was singificant comparing the effects pre- and post-training on HbA1c (glycated hemoglobin). If Yes, the reported p-value was less than 0.05; if No, the reported p-value was greater than 0.05}
 #' }
-#' @source \url{https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx}
+#' @source \url{https://journals.lww.com/acsm-msse/Fulltext/2021/03000/Effectiveness_of_HIIE_versus_MICT_in_Improving.12.aspx}
 "metabolic_gofer"
 
 #' Dataset for reproducing the meta-analysis
@@ -70,5 +70,5 @@
 #'   \item{HIIE}{the type of HIIE used in the study: it may be either: HIIT (High-intensity Interval Training) or SIT (Sprint Interval Training)}
 #'   \item{desired_effect}{the desired effect expected for post-training improvements. This is needed simply to display the effects related to HIIE and MICT on the same side of the forest plot throughout the clinical endpoints}
 #' }
-#' @source \url{https://journals.lww.com/acsm-msse/Abstract/9000/Effectiveness_of_HIIE_versus_MICT_in_Improving.96194.aspx}
+#' @source \url{https://journals.lww.com/acsm-msse/Fulltext/2021/03000/Effectiveness_of_HIIE_versus_MICT_in_Improving.12.aspx}
 "metabolic_meta"
