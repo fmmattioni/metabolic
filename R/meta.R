@@ -6,7 +6,10 @@
 #'
 #' @return a [tibble][tibble::tibble-package] with named lists.
 #' @export
-#'
+#' 
+#' @importFrom stats update
+#' @importFrom meta metabind metacont metainf metareg
+#' 
 #' @examples
 #' if (interactive()) {
 #' # Perform meta-analysis on VO2max
@@ -57,7 +60,7 @@ perform_meta <- function(
 
   # overall
   if(desired_effect == "increase") {
-    m0 <- meta::metacont(
+    m0 <- metacont(
       n.e = N_HIIE,
       mean.e = Mean_HIIE,
       sd.e = SD_HIIE,
@@ -72,7 +75,7 @@ perform_meta <- function(
       warn = FALSE
     )
   } else {
-    m0 <- meta::metacont(
+    m0 <- metacont(
       n.e = N_MICT,
       mean.e = Mean_MICT,
       sd.e = SD_MICT,
@@ -92,7 +95,7 @@ perform_meta <- function(
 
   usethis::ui_done(usethis::ui_field("      \u2514\u2500 Performing sensitivity analysis"))
 
-  out_sensitivity <- meta::metainf(x = m0, pooled = "random")
+  out_sensitivity <- metainf(x = m0, pooled = "random")
 
   ## detect whether meta-analysis is being influenced by a single study
   ## if so, remove the study from the overall results
@@ -115,11 +118,11 @@ perform_meta <- function(
   cli::cli_alert_success("Performing meta-analysis and meta-regression on the {.field {name}} subgroup")
 
   ## meta-analysis
-  m1 <- meta::update.meta(object = m0, byvar = population, print.byvar = FALSE, warn = FALSE)
+  m1 <- update(object = m0, byvar = population, print.byvar = FALSE, warn = FALSE)
   ## meta-regression
   ### supress warning from metafor package
   ### this can actually be ignored (https://stats.stackexchange.com/questions/223918/multilevel-metaregression-in-r-redundant-predictors-dropped-metafor)
-  reg1 <- suppressWarnings(meta::metareg(x = m1))
+  reg1 <- suppressWarnings(metareg(x = m1))
 
   # age ------------------------------------
 
@@ -127,9 +130,9 @@ perform_meta <- function(
   cli::cli_alert_success("Performing meta-analysis and meta-regression on the {.field {name}} subgroup")
 
   ## meta-analysis
-  m2 <- meta::update.meta(object = m0, byvar = category_age, print.byvar = FALSE, warn = FALSE)
+  m2 <- update(object = m0, byvar = category_age, print.byvar = FALSE, warn = FALSE)
   ## meta-regression
-  reg2 <- meta::metareg(x = m2, formula = age)
+  reg2 <- metareg(x = m2, formula = age)
 
   # training duration -----------------------
 
@@ -137,9 +140,9 @@ perform_meta <- function(
   cli::cli_alert_success("Performing meta-analysis and meta-regression on the {.field {name}} subgroup")
 
   ## meta-analysis
-  m3 <- meta::update.meta(object = m0, byvar = category_duration, print.byvar = FALSE, warn = FALSE)
+  m3 <- update(object = m0, byvar = category_duration, print.byvar = FALSE, warn = FALSE)
   ## meta-regression
-  reg3 <- meta::metareg(x = m3, formula = duration)
+  reg3 <- metareg(x = m3, formula = duration)
 
   # men ratio --------------------------------
 
@@ -147,9 +150,9 @@ perform_meta <- function(
   cli::cli_alert_success("Performing meta-analysis and meta-regression on the {.field {name}} subgroup")
 
   ## meta-analysis
-  m4 <- meta::update.meta(object = m0, byvar = category_men_ratio, print.byvar = FALSE, warn = FALSE)
+  m4 <- update(object = m0, byvar = category_men_ratio, print.byvar = FALSE, warn = FALSE)
   ## meta-regression
-  reg4 <- meta::metareg(x = m4, formula = men_ratio)
+  reg4 <- metareg(x = m4, formula = men_ratio)
 
   # type of exercise --------------------------
 
@@ -157,9 +160,9 @@ perform_meta <- function(
   cli::cli_alert_success("Performing meta-analysis and meta-regression on the {.field {name}} subgroup")
 
   ## meta-analysis
-  m5 <- meta::update.meta(object = m0, byvar = type_exercise, print.byvar = FALSE, warn = FALSE)
+  m5 <- update(object = m0, byvar = type_exercise, print.byvar = FALSE, warn = FALSE)
   ## meta-regression
-  reg5 <- meta::metareg(x = m5, formula = type_exercise)
+  reg5 <- metareg(x = m5, formula = type_exercise)
 
   # baseline -----------------------------------
 
@@ -167,8 +170,8 @@ perform_meta <- function(
   cli::cli_alert_success("Performing meta-analysis and meta-regression on the {.field {name}} subgroup")
 
   ## meta-analysis
-  m6 <- meta::update.meta(object = m0, byvar = category_bsln, print.byvar = FALSE, warn = FALSE)
-  reg6 <- meta::metareg(x = m6, formula = bsln_adjusted)
+  m6 <- update(object = m0, byvar = category_bsln, print.byvar = FALSE, warn = FALSE)
+  reg6 <- metareg(x = m6, formula = bsln_adjusted)
 
   if(current_endpoint != "Flow-mediated Dilation") {
 
@@ -178,9 +181,9 @@ perform_meta <- function(
     cli::cli_alert_success("Performing meta-analysis and meta-regression on the {.field {name}} subgroup")
 
     ## meta-analysis
-    m7 <- meta::update.meta(object = m0, byvar = HIIE, print.byvar = FALSE, warn = FALSE)
+    m7 <- update(object = m0, byvar = HIIE, print.byvar = FALSE, warn = FALSE)
     ## meta-regression
-    reg7 <- meta::metareg(x = m7, formula = HIIE)
+    reg7 <- metareg(x = m7, formula = HIIE)
   } else {
     m7 <- NA
     reg7 <- NA
@@ -194,7 +197,7 @@ perform_meta <- function(
 
     # overall
     if(desired_effect == "increase") {
-      m0 <- meta::metacont(
+      m0 <- metacont(
         n.e = N_HIIE,
         mean.e = Mean_HIIE,
         sd.e = SD_HIIE,
@@ -209,7 +212,7 @@ perform_meta <- function(
         warn = FALSE
       )
     } else {
-      m0 <- meta::metacont(
+      m0 <- metacont(
         n.e = N_MICT,
         mean.e = Mean_MICT,
         sd.e = SD_MICT,
@@ -281,7 +284,7 @@ perform_bind <- function(x) {
     list_meta <- x
   }
 
-  out <- suppressWarnings(do.call(what = meta::metabind, args = list_meta))
+  out <- suppressWarnings(do.call(what = metabind, args = list_meta))
 
   out$byvar <- dplyr::case_when(
     out$byvar == "meta1" ~ "Overall",

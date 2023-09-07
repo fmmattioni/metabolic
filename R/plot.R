@@ -18,6 +18,7 @@
 #' @importFrom grDevices dev.off png
 #' @importFrom graphics abline legend par title axis
 #' @importFrom stats lm
+#' @importFrom meta forest funnel bubble metabias radial
 #'
 #' @examples
 #' if(interactive()) {
@@ -54,7 +55,7 @@ plot_metabolic.meta <- function(x, save = FALSE, path, format = ".png") {
 
   if(desired_effect == "increase") {
     out <- function(){
-      meta::forest(
+      forest(
         x = x,
         lab.e = "HIIE",
         lab.c = "MICT",
@@ -70,7 +71,7 @@ plot_metabolic.meta <- function(x, save = FALSE, path, format = ".png") {
     }
   } else {
     out <- function(){
-      meta::forest(
+      forest(
         x = x,
         lab.e = "MICT",
         lab.c = "HIIE",
@@ -181,13 +182,13 @@ plot_metabolic.metareg <- function(x, save = FALSE, path, format = ".png") {
 
   if(xlab == "Population") {
     ## re-do subgroup meta-analysis with continuous variable to use in bubble plot
-    x <- meta::update.meta(x$.meta$x, byvar = population_regression) %>%
-      meta::metareg()
+    x <- update(x$.meta$x, byvar = population_regression) %>%
+      metareg()
 
     out <- function() {
       oldpar <- par(mfrow = c(1, 1), no.readonly = TRUE)
       on.exit(par(oldpar))
-      meta::bubble(
+      bubble(
         x,
         xlab = xlab,
         xaxt = "n",
@@ -199,7 +200,7 @@ plot_metabolic.metareg <- function(x, save = FALSE, path, format = ".png") {
     out <- function() {
       oldpar <- par(mfrow = c(1, 1), no.readonly = TRUE)
       on.exit(par(oldpar))
-      meta::bubble(
+      bubble(
         x,
         xlab = xlab,
         main = glue::glue("\u03b2: {round(x$b[2], 3)}\np: {format.pval(round(x$pval[2], 3), digits = 3,eps = 0.001, na.form = NA)}")
@@ -247,7 +248,7 @@ plot_metabolic.metabind <- function(x, save = FALSE, path, format = ".png") {
   x$pval <- format.pval(round(x$pval, 3), digits = 3, eps = 0.001, na.form = NA)
 
   out <- function() {
-    meta::forest(
+    forest(
       x = x,
       rightcols = c("effect", "ci", "pval", "classd"),
       rightlabs = c("d","95% CI", "p-value", "Effect Size"),
@@ -300,7 +301,7 @@ plot_metabolic.metainf <- function(x, save = FALSE, path, format = ".png") {
   x$tau2 <- formatPT(round(x$tau2, 4), digits = 4)
 
   out <- function() {
-    meta::forest(
+    forest(
       x = x,
       rightcols = c("effect", "ci", "pval", "tau2", "I2"),
       rightlabs = c("d", "95% CI", "p-value", "\u03c4\u00B2", "I\u00B2"),
@@ -374,7 +375,7 @@ plot_small_study_effects <- function(x, save = FALSE, path, format = ".png") {
 
   ## contour-enhanced funnel plot
   plot_funnel <- function() {
-    meta::funnel(
+    funnel(
       x = x,
       comb.random = FALSE,
       pch = 16,
@@ -392,7 +393,7 @@ plot_small_study_effects <- function(x, save = FALSE, path, format = ".png") {
   }
 
   ## radial plot
-  meta_bias <- meta::metabias(x = x, method = "linreg", k.min = 3)
+  meta_bias <- metabias(x = x, method = "linreg", k.min = 3)
 
   reg <- lm(I(x$TE / x$seTE) ~ I(1 / x$seTE))
 
@@ -403,7 +404,7 @@ plot_small_study_effects <- function(x, save = FALSE, path, format = ".png") {
     round(3)
 
   plot_bias <- function() {
-    meta::radial(x)
+    radial(x)
     abline(reg)
     title(
       main = glue::glue("bias: {bias}, p: {format.pval(p_value, digits = 3, eps = 0.001, na.form = NA)}"),
