@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
 [![R build status](https://github.com/fmmattioni/metabolic/workflows/R-CMD-check/badge.svg)](https://github.com/fmmattioni/metabolic/actions)
 [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/metabolic?color=blue)](https://CRAN.R-project.org/package=metabolic)
 [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/metabolic?color=blue)](https://CRAN.R-project.org/package=metabolic)
+[![R-CMD-check](https://github.com/fmmattioni/metabolic/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/fmmattioni/metabolic/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `metabolic` is to provide all the data and the tools necessary to reproduce the meta-analysis published in [Medicine & Science in Sports & Exercise](https://journals.lww.com/acsm-msse/Fulltext/2021/03000/Effectiveness_of_HIIE_versus_MICT_in_Improving.12.aspx).
